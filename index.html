@@ -42,7 +42,7 @@
       z-index:20;
       background:rgba(241,241,239,.94);
       backdrop-filter:blur(14px);
-      border-bottom:1px solid var(--line);
+      border-bottom:0;
     }
 
     .nav{
@@ -79,7 +79,7 @@
 
     .hero{
       padding:34px 0 80px;
-      border-bottom:1px solid var(--line);
+      border-bottom:0;
     }
 
     .hero-grid{
@@ -146,7 +146,7 @@
 
     .hero-links a{
       text-decoration:none;
-      border-bottom:1px solid var(--ink);
+      border-bottom:0;
       padding-bottom:3px;
       font-size:.8rem;
       text-transform:uppercase;
@@ -228,7 +228,7 @@
 
     section{
       padding:105px 0;
-      border-bottom:1px solid var(--line);
+      border-bottom:0;
       scroll-margin-top:80px;
     }
 
@@ -289,7 +289,7 @@
     .about-mini{
       display:grid;
       grid-template-columns:repeat(3,1fr);
-      border-top:1px solid var(--ink);
+      border-top:0;
     }
 
     .mini{
@@ -315,7 +315,7 @@
       grid-template-columns:170px 1.15fr 1fr;
       gap:34px;
       padding:28px 0;
-      border-bottom:1px solid var(--line);
+      border-bottom:0;
     }
 
     .exp-date{
@@ -363,8 +363,8 @@
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:1px;
-      background:var(--line);
-      border:1px solid var(--line);
+      background:transparent;
+      border:0;
     }
 
     .project{
@@ -428,7 +428,7 @@
     }
 
     .project-tags span{
-      border:1px solid var(--line);
+      border:0;
       padding:5px 8px;
       font-size:.68rem;
       text-transform:uppercase;
@@ -438,8 +438,8 @@
 
     details{
       margin-top:24px;
-      border-top:1px solid var(--line);
-      border-bottom:1px solid var(--line);
+      border-top:0;
+      border-bottom:0;
     }
 
     summary{
@@ -485,7 +485,7 @@
       width:max-content;
       margin-top:30px;
       text-decoration:none;
-      border-bottom:1px solid var(--ink);
+      border-bottom:0;
       padding-bottom:4px;
       font-size:.75rem;
       text-transform:uppercase;
@@ -496,12 +496,12 @@
     .metrics{
       display:grid;
       align-content:end;
-      border-top:1px solid var(--line);
+      border-top:0;
     }
 
     .metric{
       padding:18px 0;
-      border-bottom:1px solid var(--line);
+      border-bottom:0;
     }
     .metric strong{
       font-family:Georgia, "Times New Roman", serif;
@@ -537,7 +537,7 @@
     .skill-search{
       width:100%;
       border:0;
-      border-bottom:1px solid var(--ink);
+      border-bottom:0;
       background:transparent;
       padding:10px 0;
       outline:none;
@@ -552,7 +552,7 @@
     }
 
     .skill-filter{
-      border:1px solid var(--line);
+      border:0;
       background:transparent;
       padding:6px 9px;
       cursor:pointer;
@@ -569,7 +569,7 @@
     }
 
     .skills{
-      border-top:1px solid var(--ink);
+      border-top:0;
     }
 
     .skill{
@@ -577,7 +577,7 @@
       grid-template-columns:50px 1fr auto;
       gap:18px;
       padding:14px 0;
-      border-bottom:1px solid var(--line);
+      border-bottom:0;
       align-items:center;
     }
 
@@ -603,7 +603,7 @@
 
     .edu-list,
     .cert-list{
-      border-top:1px solid var(--ink);
+      border-top:0;
     }
 
     .edu,
@@ -611,7 +611,7 @@
       display:grid;
       grid-template-columns:180px 1fr auto;
       gap:32px;
-      border-bottom:1px solid var(--line);
+      border-bottom:0;
       padding:27px 0;
       align-items:start;
     }
@@ -672,7 +672,7 @@
     }
 
     .contact-links{
-      border-top:1px solid var(--ink);
+      border-top:0;
     }
 
     .contact-links a{
@@ -680,7 +680,7 @@
       justify-content:space-between;
       text-decoration:none;
       padding:13px 0;
-      border-bottom:1px solid var(--line);
+      border-bottom:0;
       text-transform:uppercase;
       font-size:.72rem;
       letter-spacing:.08em;
@@ -717,7 +717,7 @@
       .hero-links{justify-content:flex-start}
       section{padding:76px 0}
       .about-mini{grid-template-columns:1fr}
-      .mini+.mini{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:16px;margin-top:16px}
+      .mini+.mini{border-left:0;border-top:0;padding-left:0;padding-top:16px;margin-top:16px}
       .project{min-height:380px}
     }
 
@@ -728,7 +728,7 @@
     }
 
     .skill-cluster-group{
-      border-top:1px solid var(--ink);
+      border-top:0;
       padding-top:18px;
     }
 
@@ -802,6 +802,104 @@
       }
     }
 
+  
+    .topbar{
+      border-bottom:0 !important;
+      box-shadow:0 1px 0 rgba(17,17,17,.05);
+    }
+
+    section{
+      border-bottom:0 !important;
+    }
+
+    .section-head{
+      margin-bottom:46px;
+    }
+
+    .about-single{
+      display:block;
+      max-width:920px;
+    }
+
+    .about-single-copy{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:1.05rem;
+      line-height:1.8;
+      color:var(--ink);
+      letter-spacing:-.01em;
+    }
+
+    .experience-list,
+    .edu-list,
+    .cert-list,
+    .contact-links{
+      border:0 !important;
+    }
+
+    .exp,
+    .edu,
+    .cert{
+      border:0 !important;
+      padding:24px 0;
+    }
+
+    .exp + .exp,
+    .edu + .edu,
+    .cert + .cert{
+      margin-top:10px;
+    }
+
+    .projects-grid{
+      background:transparent !important;
+      border:0 !important;
+      gap:18px;
+    }
+
+    .project{
+      border:0 !important;
+      background:var(--paper);
+      box-shadow:none;
+    }
+
+    .project.feature{
+      margin-bottom:0;
+    }
+
+    .project-last{
+      grid-column:span 2;
+      min-height:320px;
+    }
+
+    details{
+      border:0 !important;
+      background:rgba(17,17,17,.025);
+      padding:0 14px;
+      margin-top:20px;
+    }
+
+    .skill-cluster-group{
+      border-top:0 !important;
+      padding-top:0;
+    }
+
+    .skill-tile{
+      border:1px solid rgba(17,17,17,.08) !important;
+    }
+
+    .compact-contact-row{
+      border-top:0 !important;
+      padding-top:0;
+    }
+
+    footer{
+      border-top:0 !important;
+    }
+
+    @media(max-width:900px){
+      .project-last{grid-column:span 1}
+    }
+
   </style>
 </head>
 <body>
@@ -836,9 +934,7 @@
           </h1>
 
           <div class="hero-bottom">
-            <p class="hero-copy">
-              AI Engineer building research-driven systems that move from experimentation to production.
-            </p>
+            
             <div class="hero-links">
               <a href="#projects">View projects</a>
               <a href="assets/Rachana_Venati_Resume.pdf" target="_blank">Résumé</a>
@@ -870,18 +966,10 @@
           <h2 class="section-title">A focused approach to <em>applied AI.</em></h2>
         </div>
 
-        <div class="about-layout">
-          <p class="about-statement">
-            I started in software engineering and moved deeper into AI through my M.Sc. in Computer Science for Digital Media at Bauhaus-Universität Weimar.
+        <div class="about-layout about-single">
+          <p class="about-single-copy">
+            I started in software engineering and gradually moved deeper into AI through my M.Sc. in Computer Science for Digital Media at Bauhaus-Universität Weimar. Today I work across LLMs, Retrieval-Augmented Generation, information retrieval, agentic AI and multimodal learning, with a particular interest in the engineering around models: retrieval quality, ranking, grounding, evaluation, orchestration, APIs and deployment. My focus is on turning strong research ideas into AI systems that are clear, maintainable and useful in production.
           </p>
-
-          <div class="about-side">
-            <p>
-              Today I work across <strong>LLMs, Retrieval-Augmented Generation, information retrieval, agentic AI and multimodal learning</strong>.
-              I am most interested in the engineering layer around models: retrieval quality, ranking, grounding, evaluation, orchestration, APIs and deployment.
-              My goal is to turn strong research ideas into AI systems that are explainable, maintainable and useful in production.
-            </p>
-          </div>
         </div>
       </div>
     </section>
@@ -925,7 +1013,7 @@
           </article>
 
           <article class="exp">
-            <div class="exp-date">2018 — 2020</div>
+            <div class="exp-date">Sep 2018 — Jun 2020</div>
             <div class="exp-role">
               <h3>Associate Software Engineer</h3>
               <p>Kony / Temenos · India</p>
@@ -1077,7 +1165,7 @@
             <a class="project-link" href="https://github.com/RachanaVenati/CrackDetection" target="_blank">View repository</a>
           </article>
 
-          <article class="project project-detailed">
+          <article class="project project-detailed project-last">
             <div>
               <div class="project-id">05 / VR & Multiplayer Systems</div>
               <h3>Multiplayer Minigolf in VR</h3>
