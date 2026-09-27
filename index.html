@@ -1,6 +1,4 @@
-from pathlib import Path
-
-html = r'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -437,6 +435,51 @@ html = r'''<!DOCTYPE html>
       letter-spacing:.06em;
     }
 
+
+    details{
+      margin-top:24px;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding:14px 0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:.7rem;
+      font-weight:700;
+    }
+
+    summary::-webkit-details-marker{display:none}
+    summary::after{content:"+";font-family:Georgia,"Times New Roman",serif;font-size:1.3rem;font-weight:400}
+    details[open] summary::after{content:"−"}
+
+    .detail-body{
+      padding:2px 0 18px;
+      max-width:760px;
+    }
+
+    .detail-body p{
+      margin:0 0 11px;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+
+    .detail-body strong{
+      color:var(--ink);
+      font-weight:700;
+    }
+
+    .project:hover .detail-body p{color:#bbb}
+    .project:hover .detail-body strong{color:#fff}
+    .project:hover details{border-color:#505050}
+
     .project-link{
       display:inline-block;
       width:max-content;
@@ -677,6 +720,88 @@ html = r'''<!DOCTYPE html>
       .mini+.mini{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:16px;margin-top:16px}
       .project{min-height:380px}
     }
+
+    .skill-clusters{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:42px 52px;
+    }
+
+    .skill-cluster-group{
+      border-top:1px solid var(--ink);
+      padding-top:18px;
+    }
+
+    .skill-cluster-group h3{
+      margin:0 0 18px;
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:1.5rem;
+      font-weight:400;
+      letter-spacing:-.03em;
+    }
+
+    .skill-tile-wrap{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:flex-start;
+    }
+
+    .skill-tile{
+      display:inline-flex;
+      align-items:center;
+      min-height:34px;
+      padding:7px 11px;
+      border:1px solid rgba(17,17,17,.12);
+      font-size:.76rem;
+      line-height:1;
+      letter-spacing:.015em;
+      white-space:nowrap;
+      transition:transform .16s ease, box-shadow .16s ease;
+    }
+
+    .skill-tile:hover{
+      transform:translateY(-2px);
+      box-shadow:0 5px 16px rgba(0,0,0,.06);
+    }
+
+    .skill-tile.ai{
+      background:#dce9df;
+      color:#20392b;
+    }
+
+    .skill-tile.ml{
+      background:#e2e1ed;
+      color:#34314b;
+    }
+
+    .skill-tile.software{
+      background:#eadfce;
+      color:#463626;
+    }
+
+    .skill-tile.cloud{
+      background:#dbe6ea;
+      color:#273b43;
+    }
+
+    .skill-tile.systems{
+      background:#e8dedd;
+      color:#463232;
+    }
+
+    .skill-tile.language{
+      background:#e6e3d6;
+      color:#3e3a2a;
+    }
+
+    @media(max-width:800px){
+      .skill-clusters{
+        grid-template-columns:1fr;
+        gap:34px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -712,9 +837,7 @@ html = r'''<!DOCTYPE html>
 
           <div class="hero-bottom">
             <p class="hero-copy">
-              AI engineer working across retrieval-augmented generation,
-              information retrieval, multimodal learning, automation,
-              and production software systems.
+              AI Engineer building research-driven systems that move from experimentation to production.
             </p>
             <div class="hero-links">
               <a href="#projects">View projects</a>
@@ -729,9 +852,8 @@ html = r'''<!DOCTYPE html>
             <span>01</span>
           </div>
           <div class="panel-word">
-            Research
-            <em>meets</em>
-            Engineering
+            AI Engineer
+            <em>LLMs · RAG · IR</em>
           </div>
           <div class="panel-foot">
             <span>RAG · NLP · IR</span>
@@ -750,31 +872,15 @@ html = r'''<!DOCTYPE html>
 
         <div class="about-layout">
           <p class="about-statement">
-            I move between research questions and production constraints — building systems that can be measured, explained, and shipped.
+            I started in software engineering and moved deeper into AI through my M.Sc. in Computer Science for Digital Media at Bauhaus-Universität Weimar.
           </p>
 
           <div class="about-side">
             <p>
-              My work spans retrieval systems, multimodal machine learning,
-              software engineering, APIs, cloud deployment and automation.
-              I care about clear evaluation, maintainable implementations and
-              practical outcomes.
+              Today I work across <strong>LLMs, Retrieval-Augmented Generation, information retrieval, agentic AI and multimodal learning</strong>.
+              I am most interested in the engineering layer around models: retrieval quality, ranking, grounding, evaluation, orchestration, APIs and deployment.
+              My goal is to turn strong research ideas into AI systems that are explainable, maintainable and useful in production.
             </p>
-
-            <div class="about-mini">
-              <div class="mini">
-                <strong>Research</strong>
-                <span>Information retrieval, ranking, evaluation</span>
-              </div>
-              <div class="mini">
-                <strong>Build</strong>
-                <span>RAG, multimodal ML, APIs, product systems</span>
-              </div>
-              <div class="mini">
-                <strong>Deploy</strong>
-                <span>Cloud, containers, automation, debugging</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -841,26 +947,16 @@ html = r'''<!DOCTYPE html>
           <div class="section-no">03 / Projects</div>
           <h2 class="section-title">Selected <em>work.</em></h2>
         </div>
-
-        <div class="projects-intro">
-          <p class="about-statement">Research, retrieval, multimodal learning and interactive systems.</p>
-          <p>
-            A selection of academic and engineering projects spanning
-            information retrieval, generative AI, computer vision,
-            data visualization and immersive systems.
-          </p>
-        </div>
-
-        <div class="projects-grid">
+<div class="projects-grid">
 
           <article class="project feature">
             <div>
               <div class="project-id">Featured / Master Thesis</div>
               <h3>Experimental Evaluation of Axioms for Health Information Retrieval</h3>
               <p class="project-copy">
-                Explainable health-search reranking using medical terminology,
-                demographics, recency and evidence-level axioms, evaluated on
-                TREC and CLEF benchmarks.
+                Research on explainable reranking for health search. I designed preference axioms around medical terminology,
+                demographics, recency and evidence level, then used them to rerank search results and evaluate how well the
+                resulting order aligned with relevance judgments.
               </p>
               <div class="project-tags">
                 <span>Information Retrieval</span>
@@ -871,91 +967,136 @@ html = r'''<!DOCTYPE html>
               </div>
             </div>
             <div class="metrics">
-              <div class="metric">
-                <strong>0.492 → 0.524</strong>
-                <span>TREC 2021 nDCG@5</span>
-              </div>
-              <div class="metric">
-                <strong>0.119 → 0.125</strong>
-                <span>CLEF 2017 nDCG@5</span>
-              </div>
-              <div class="metric">
-                <strong>~90%</strong>
-                <span>Axiom / expert alignment</span>
-              </div>
+              <div class="metric"><strong>0.492 → 0.524</strong><span>TREC 2021 nDCG@5</span></div>
+              <div class="metric"><strong>0.119 → 0.125</strong><span>CLEF 2017 nDCG@5</span></div>
+              <div class="metric"><strong>~90%</strong><span>Axiom / expert alignment</span></div>
             </div>
           </article>
 
-          <article class="project">
+          <article class="project project-detailed">
             <div>
-              <div class="project-id">01 / Retrieval</div>
-              <h3>RAG for TREC 2024</h3>
+              <div class="project-id">01 / Retrieval-Augmented Generation</div>
+              <h3>BUW at TREC 2024 — RAG</h3>
               <p class="project-copy">
-                Retrieval and answer-generation pipeline over MS MARCO using
-                sparse retrieval, vector refinement, Llama 3 and sentence-level citations.
+                A complete retrieval-and-generation system for the TREC 2024 RAG track over the MS MARCO Segment v2.1 collection.
               </p>
+
+              <details>
+                <summary>How the system works</summary>
+                <div class="detail-body">
+                  <p><strong>Problem.</strong> Retrieve relevant evidence for 301 TREC RAG queries and generate grounded answers with traceable citations.</p>
+                  <p><strong>Retrieval.</strong> Pyserini/Lucene BM25 first retrieves the top 100 segments. Those candidates are then indexed in Weaviate and refined to the top 20 with MiniLM embeddings using either hybrid search or semantic Near Text search.</p>
+                  <p><strong>Generation.</strong> Llama 3 receives the original query plus the top retrieved segments. Prompt variants were tested to reduce unsupported content and make answers more concise.</p>
+                  <p><strong>Citations.</strong> Instead of relying on the LLM to place citations correctly, generated sentences are embedded and matched back to retrieved segments with cosine similarity, then supporting references are attached in post-processing.</p>
+                  <p><strong>Evaluation.</strong> The repository reports 0.752 precision and 0.860 average NDCG for the dense-on-sparse retrieval run using adapted TREC 2023 judgments as a development proxy.</p>
+                </div>
+              </details>
+
               <div class="project-tags">
-                <span>RAG</span><span>Pyserini</span><span>BM25</span><span>Weaviate</span><span>Llama 3</span>
+                <span>Pyserini</span><span>BM25</span><span>Weaviate</span><span>MiniLM</span><span>Llama 3</span><span>FastAPI</span>
               </div>
             </div>
             <a class="project-link" href="https://github.com/RachanaVenati/RAG-TREC2024" target="_blank">View repository</a>
           </article>
 
-          <article class="project">
+          <article class="project project-detailed">
             <div>
-              <div class="project-id">02 / Multimodal ML</div>
-              <h3>Nutri-Score Sentiment Analysis</h3>
+              <div class="project-id">02 / Multimodal Machine Learning</div>
+              <h3>Nutri-Score Multimodal Sentiment Analysis</h3>
               <p class="project-copy">
-                Text, image and fused classification using RoBERTa,
-                Vision Transformer models and FastAPI serving.
+                A three-class sentiment system for Instagram posts that predicts Positive, Neutral or Negative using both text and image information.
               </p>
+
+              <details>
+                <summary>How the system works</summary>
+                <div class="detail-body">
+                  <p><strong>Experiments.</strong> The project compares text-only, image-only, CLIP-based and image-text fusion approaches rather than treating multimodal learning as a single model choice.</p>
+                  <p><strong>Text branch.</strong> A RoBERTa sentiment model is fine-tuned on Instagram post text.</p>
+                  <p><strong>Image branch.</strong> A Vision Transformer processes post images, while a separate CLIP experiment explores joint visual-language representations.</p>
+                  <p><strong>Fusion.</strong> Learned text and image representations are combined in a dedicated fusion model for final sentiment classification.</p>
+                  <p><strong>Serving & reproducibility.</strong> The repository is structured as an installable Python package with CLI commands for splitting data, training each branch, evaluating predictions, and launching a FastAPI endpoint that accepts post text plus an image.</p>
+                </div>
+              </details>
+
               <div class="project-tags">
-                <span>PyTorch</span><span>RoBERTa</span><span>ViT</span><span>FastAPI</span>
+                <span>PyTorch</span><span>RoBERTa</span><span>Vision Transformer</span><span>CLIP</span><span>FastAPI</span><span>Hugging Face</span>
               </div>
             </div>
             <a class="project-link" href="https://github.com/RachanaVenati/Nutriscore-" target="_blank">View repository</a>
           </article>
 
-          <article class="project">
+          <article class="project project-detailed">
             <div>
-              <div class="project-id">03 / Visualization</div>
-              <h3>Music & Socioeconomic Visualization</h3>
+              <div class="project-id">03 / Interactive Visualization</div>
+              <h3>Music & Socioeconomic Data Visualization</h3>
               <p class="project-copy">
-                Interactive exploration of relationships between global chart
-                music characteristics and socioeconomic indicators.
+                An interactive exploration of how characteristics of charting songs relate to socioeconomic conditions across countries.
               </p>
+
+              <details>
+                <summary>How the system works</summary>
+                <div class="detail-body">
+                  <p><strong>Research question.</strong> The project asks how music parameters such as tempo and energy correlate with socioeconomic conditions.</p>
+                  <p><strong>Box plots.</strong> Users can select a musical feature and inspect its distribution through minimum, maximum, median and quartiles.</p>
+                  <p><strong>Calendar heatmap.</strong> The selected music parameter is reflected in a temporal view to reveal patterns over time and compare them with external factors.</p>
+                  <p><strong>Geo heatmap.</strong> Countries can be selected directly on the map; that selection updates the related calendar and box-plot views.</p>
+                  <p><strong>Interaction.</strong> Coordinated views and a global reset allow users to move between country-level and global analysis without losing context.</p>
+                </div>
+              </details>
+
               <div class="project-tags">
-                <span>JavaScript</span><span>Visualization</span><span>Analytics</span>
+                <span>JavaScript</span><span>Interactive Visualization</span><span>Box Plot</span><span>Calendar Heatmap</span><span>Geo Heatmap</span>
               </div>
             </div>
             <a class="project-link" href="https://github.com/RachanaVenati/Visualization_music" target="_blank">View repository</a>
           </article>
 
-          <article class="project">
+          <article class="project project-detailed">
             <div>
-              <div class="project-id">04 / Computer Vision</div>
+              <div class="project-id">04 / Classical Computer Vision</div>
               <h3>Crack Detection</h3>
               <p class="project-copy">
-                MATLAB pipeline for segmentation, feature extraction,
-                SVM classification, skeletonization and crack measurement.
+                A MATLAB pipeline for detecting and structurally analysing cracks in wall-surface images without relying on deep learning.
               </p>
+
+              <details>
+                <summary>How the system works</summary>
+                <div class="detail-body">
+                  <p><strong>Pre-processing.</strong> Images are prepared, split and augmented to improve robustness across different surface conditions.</p>
+                  <p><strong>Segmentation.</strong> Intensity thresholding and morphological operations create binary crack masks, followed by connected-component analysis to remove noise and isolate crack regions.</p>
+                  <p><strong>Classification.</strong> Handcrafted region-level features are extracted and used with an SVM to distinguish crack from non-crack regions.</p>
+                  <p><strong>Structural analytics.</strong> Segmented cracks are thinned into skeletons so the pipeline can estimate crack length and inspect branching behaviour.</p>
+                  <p><strong>Evaluation.</strong> The code includes segmentation evaluation such as Intersection-over-Union and is designed as a lightweight classical alternative for limited-data or limited-compute settings.</p>
+                </div>
+              </details>
+
               <div class="project-tags">
-                <span>MATLAB</span><span>Image Analysis</span><span>SVM</span>
+                <span>MATLAB</span><span>Thresholding</span><span>Morphology</span><span>SVM</span><span>Skeletonization</span><span>IoU</span>
               </div>
             </div>
             <a class="project-link" href="https://github.com/RachanaVenati/CrackDetection" target="_blank">View repository</a>
           </article>
 
-          <article class="project">
+          <article class="project project-detailed">
             <div>
-              <div class="project-id">05 / XR</div>
+              <div class="project-id">05 / VR & Multiplayer Systems</div>
               <h3>Multiplayer Minigolf in VR</h3>
               <p class="project-copy">
-                Unity 3D multiplayer game using physics, ray casting,
-                navigation, score logic and network synchronization.
+                A multi-user virtual-reality minigolf game built in Unity 3D with synchronized gameplay across players.
               </p>
+
+              <details>
+                <summary>How the system works</summary>
+                <div class="detail-body">
+                  <p><strong>Environment.</strong> Game objects and scenes were designed and assembled directly in Unity 3D for a VR minigolf experience.</p>
+                  <p><strong>Interaction.</strong> Physics, ray-casting and navigation techniques drive ball behaviour and player interaction with the scene.</p>
+                  <p><strong>Game logic.</strong> Multiplayer scoring logic tracks the state of the game and presents scores to participants.</p>
+                  <p><strong>Networking.</strong> Network synchronization keeps scenes and scores consistent across multiple users so players share the same game state.</p>
+                </div>
+              </details>
+
               <div class="project-tags">
-                <span>Unity 3D</span><span>C#</span><span>VR</span><span>Networking</span>
+                <span>Unity 3D</span><span>C#</span><span>VR</span><span>Physics</span><span>Ray Casting</span><span>Networking</span>
               </div>
             </div>
             <a class="project-link" href="https://github.com/RachanaVenati/minigolf-VR" target="_blank">View repository</a>
@@ -965,66 +1106,100 @@ html = r'''<!DOCTYPE html>
       </div>
     </section>
 
+    
+    
     <section id="skills">
       <div class="wrap">
         <div class="section-head">
           <div class="section-no">04 / Skills</div>
-          <h2 class="section-title">Technical <em>index.</em></h2>
+          <h2 class="section-title">Technical <em>skills.</em></h2>
         </div>
 
-        <div class="knowledge-layout">
-          <div class="knowledge-copy">
-            <p>
-              Skills are shown as an index rather than badges or a visual cluster,
-              keeping the portfolio closer to the editorial style of the reference.
-            </p>
-            <input id="skillSearch" class="skill-search" type="search" placeholder="Search skill">
-            <div class="skill-filters">
-              <button class="skill-filter active" data-cat="all">All</button>
-              <button class="skill-filter" data-cat="ai">AI / IR</button>
-              <button class="skill-filter" data-cat="ml">ML</button>
-              <button class="skill-filter" data-cat="software">Software</button>
-              <button class="skill-filter" data-cat="cloud">Cloud</button>
-              <button class="skill-filter" data-cat="systems">Systems</button>
+        <div class="skill-clusters">
+          <div class="skill-cluster-group">
+            <h3>AI & Retrieval</h3>
+            <div class="skill-tile-wrap">
+              <span class="skill-tile ai">RAG</span>
+              <span class="skill-tile ai">Agentic AI</span>
+              <span class="skill-tile ai">Information Retrieval</span>
+              <span class="skill-tile ai">BM25</span>
+              <span class="skill-tile ai">Vector Search</span>
+              <span class="skill-tile ai">Hybrid Search</span>
+              <span class="skill-tile ai">Reranking</span>
+              <span class="skill-tile ai">Semantic Chunking</span>
+              <span class="skill-tile ai">Late Chunking</span>
+              <span class="skill-tile ai">LangGraph</span>
+              <span class="skill-tile ai">Pyserini</span>
+              <span class="skill-tile ai">PyTerrier</span>
+              <span class="skill-tile ai">Weaviate</span>
+              <span class="skill-tile ai">MeSH</span>
             </div>
           </div>
 
-          <div class="skills">
-            <div class="skill" data-cat="ai"><div class="skill-num">01</div><strong>RAG</strong><span>AI / IR</span></div>
-            <div class="skill" data-cat="ai"><div class="skill-num">02</div><strong>Agentic AI</strong><span>AI / IR</span></div>
-            <div class="skill" data-cat="ai"><div class="skill-num">03</div><strong>Information Retrieval</strong><span>AI / IR</span></div>
-            <div class="skill" data-cat="ai"><div class="skill-num">04</div><strong>BM25 / Hybrid Search</strong><span>AI / IR</span></div>
-            <div class="skill" data-cat="ai"><div class="skill-num">05</div><strong>Vector Search / Reranking</strong><span>AI / IR</span></div>
-            <div class="skill" data-cat="ai"><div class="skill-num">06</div><strong>Semantic & Late Chunking</strong><span>AI / IR</span></div>
-            <div class="skill" data-cat="ai"><div class="skill-num">07</div><strong>LangGraph</strong><span>AI / IR</span></div>
-            <div class="skill" data-cat="ai"><div class="skill-num">08</div><strong>Pyserini / PyTerrier</strong><span>AI / IR</span></div>
-            <div class="skill" data-cat="ai"><div class="skill-num">09</div><strong>Weaviate / MeSH</strong><span>AI / IR</span></div>
+          <div class="skill-cluster-group">
+            <h3>Machine Learning</h3>
+            <div class="skill-tile-wrap">
+              <span class="skill-tile ml">PyTorch</span>
+              <span class="skill-tile ml">Scikit-learn</span>
+              <span class="skill-tile ml">RoBERTa</span>
+              <span class="skill-tile ml">Vision Transformer</span>
+              <span class="skill-tile ml">Sentence Transformers</span>
+              <span class="skill-tile ml">Hugging Face</span>
+              <span class="skill-tile ml">SVM</span>
+              <span class="skill-tile ml">Image Analysis</span>
+            </div>
+          </div>
 
-            <div class="skill" data-cat="ml"><div class="skill-num">10</div><strong>PyTorch</strong><span>Machine Learning</span></div>
-            <div class="skill" data-cat="ml"><div class="skill-num">11</div><strong>Scikit-learn</strong><span>Machine Learning</span></div>
-            <div class="skill" data-cat="ml"><div class="skill-num">12</div><strong>RoBERTa</strong><span>Machine Learning</span></div>
-            <div class="skill" data-cat="ml"><div class="skill-num">13</div><strong>Vision Transformer</strong><span>Machine Learning</span></div>
-            <div class="skill" data-cat="ml"><div class="skill-num">14</div><strong>Sentence Transformers</strong><span>Machine Learning</span></div>
-            <div class="skill" data-cat="ml"><div class="skill-num">15</div><strong>Hugging Face</strong><span>Machine Learning</span></div>
-            <div class="skill" data-cat="ml"><div class="skill-num">16</div><strong>SVM / Image Analysis</strong><span>Machine Learning</span></div>
+          <div class="skill-cluster-group">
+            <h3>Software Engineering</h3>
+            <div class="skill-tile-wrap">
+              <span class="skill-tile software">Python</span>
+              <span class="skill-tile software">JavaScript</span>
+              <span class="skill-tile software">C#</span>
+              <span class="skill-tile software">C++</span>
+              <span class="skill-tile software">MATLAB</span>
+              <span class="skill-tile software">FastAPI</span>
+              <span class="skill-tile software">Pydantic</span>
+              <span class="skill-tile software">Pandas</span>
+              <span class="skill-tile software">Pytest</span>
+              <span class="skill-tile software">Git</span>
+            </div>
+          </div>
 
-            <div class="skill" data-cat="software"><div class="skill-num">17</div><strong>Python</strong><span>Software</span></div>
-            <div class="skill" data-cat="software"><div class="skill-num">18</div><strong>JavaScript</strong><span>Software</span></div>
-            <div class="skill" data-cat="software"><div class="skill-num">19</div><strong>C# / C++</strong><span>Software</span></div>
-            <div class="skill" data-cat="software"><div class="skill-num">20</div><strong>MATLAB</strong><span>Software</span></div>
-            <div class="skill" data-cat="software"><div class="skill-num">21</div><strong>FastAPI / Pydantic</strong><span>Software</span></div>
-            <div class="skill" data-cat="software"><div class="skill-num">22</div><strong>Pandas / Pytest / Git</strong><span>Software</span></div>
+          <div class="skill-cluster-group">
+            <h3>Cloud & Automation</h3>
+            <div class="skill-tile-wrap">
+              <span class="skill-tile cloud">Google Cloud</span>
+              <span class="skill-tile cloud">Docker</span>
+              <span class="skill-tile cloud">Netcup</span>
+              <span class="skill-tile cloud">n8n</span>
+              <span class="skill-tile cloud">Activepieces</span>
+              <span class="skill-tile cloud">SLURM / HPC</span>
+            </div>
+          </div>
 
-            <div class="skill" data-cat="cloud"><div class="skill-num">23</div><strong>Google Cloud</strong><span>Cloud</span></div>
-            <div class="skill" data-cat="cloud"><div class="skill-num">24</div><strong>Docker</strong><span>Cloud</span></div>
-            <div class="skill" data-cat="cloud"><div class="skill-num">25</div><strong>Netcup</strong><span>Cloud</span></div>
-            <div class="skill" data-cat="cloud"><div class="skill-num">26</div><strong>n8n / Activepieces</strong><span>Automation</span></div>
+          <div class="skill-cluster-group">
+            <h3>Platforms & Systems</h3>
+            <div class="skill-tile-wrap">
+              <span class="skill-tile systems">Android</span>
+              <span class="skill-tile systems">iOS</span>
+              <span class="skill-tile systems">Web</span>
+              <span class="skill-tile systems">Volt MX / Kony</span>
+              <span class="skill-tile systems">FCM</span>
+              <span class="skill-tile systems">GCM</span>
+              <span class="skill-tile systems">APNs</span>
+              <span class="skill-tile systems">Unity 3D</span>
+              <span class="skill-tile systems">VR</span>
+              <span class="skill-tile systems">Networking</span>
+            </div>
+          </div>
 
-            <div class="skill" data-cat="systems"><div class="skill-num">27</div><strong>Android / iOS / Web</strong><span>Systems</span></div>
-            <div class="skill" data-cat="systems"><div class="skill-num">28</div><strong>Volt MX / Kony</strong><span>Systems</span></div>
-            <div class="skill" data-cat="systems"><div class="skill-num">29</div><strong>FCM / GCM / APNs</strong><span>Systems</span></div>
-            <div class="skill" data-cat="systems"><div class="skill-num">30</div><strong>SLURM / HPC</strong><span>Systems</span></div>
-            <div class="skill" data-cat="systems"><div class="skill-num">31</div><strong>Unity 3D / VR / Networking</strong><span>Systems</span></div>
+          <div class="skill-cluster-group">
+            <h3>Languages</h3>
+            <div class="skill-tile-wrap">
+              <span class="skill-tile language">English · C1</span>
+              <span class="skill-tile language">German · B1</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1069,49 +1244,39 @@ html = r'''<!DOCTYPE html>
         </div>
 
         <div class="cert-list">
-          <article class="cert">
+          <a class="cert cert-link" href="https://www.linkedin.com/in/rachanavenati/details/certifications/" target="_blank" rel="noreferrer">
             <div class="cert-date">Sep 2026</div>
             <div><h3>Agentic AI</h3><p>DeepLearning.AI</p></div>
-            <div>01</div>
-          </article>
-          <article class="cert">
+            <div>View ↗</div>
+          </a>
+          <a class="cert cert-link" href="https://www.linkedin.com/in/rachanavenati/details/certifications/" target="_blank" rel="noreferrer">
             <div class="cert-date">Aug 2026</div>
             <div><h3>Transformers in Practice</h3><p>DeepLearning.AI</p></div>
-            <div>02</div>
-          </article>
-          <article class="cert">
+            <div>View ↗</div>
+          </a>
+          <a class="cert cert-link" href="https://www.linkedin.com/in/rachanavenati/details/certifications/" target="_blank" rel="noreferrer">
             <div class="cert-date">Jun 2025</div>
             <div><h3>Code in Place</h3><p>Stanford University</p></div>
-            <div>03</div>
-          </article>
+            <div>View ↗</div>
+          </a>
         </div>
       </div>
     </section>
 
-    <section class="contact" id="contact">
+    
+    <section class="contact compact-contact" id="contact">
       <div class="wrap">
         <div class="section-head">
           <div class="section-no">07 / Contact</div>
-          <div></div>
+          <h2 class="section-title">Contact.</h2>
         </div>
 
-        <div class="contact-layout">
-          <h2 class="contact-title">Let’s build<br><em>something useful.</em></h2>
-
-          <div class="contact-side">
-            <p>
-              Open to conversations around AI engineering,
-              retrieval systems, applied ML and research-oriented product work.
-            </p>
-
-            <div class="contact-links">
-              <a href="mailto:rachanavenati@gmail.com"><span>Email</span><span>↗</span></a>
-              <a href="https://www.linkedin.com/in/rachanavenati" target="_blank"><span>LinkedIn</span><span>↗</span></a>
-              <a href="https://github.com/RachanaVenati" target="_blank"><span>GitHub</span><span>↗</span></a>
-              <a href="https://huggingface.co/RachanaV" target="_blank"><span>Hugging Face</span><span>↗</span></a>
-              <a href="https://www.kaggle.com/rachanavenati" target="_blank"><span>Kaggle</span><span>↗</span></a>
-            </div>
-          </div>
+        <div class="compact-contact-row">
+          <a href="mailto:rachanavenati@gmail.com">Email ↗</a>
+          <a href="https://www.linkedin.com/in/rachanavenati" target="_blank">LinkedIn ↗</a>
+          <a href="https://github.com/RachanaVenati" target="_blank">GitHub ↗</a>
+          <a href="https://huggingface.co/RachanaV" target="_blank">Hugging Face ↗</a>
+          <a href="https://www.kaggle.com/rachanavenati" target="_blank">Kaggle ↗</a>
         </div>
       </div>
     </section>
@@ -1123,36 +1288,8 @@ html = r'''<!DOCTYPE html>
   </footer>
 
   <script>
-    const search = document.getElementById('skillSearch');
-    const filters = [...document.querySelectorAll('.skill-filter')];
-    const skills = [...document.querySelectorAll('.skill')];
-    let active = 'all';
-
-    function applySkillFilters(){
-      const q = search.value.toLowerCase().trim();
-      skills.forEach(skill => {
-        const categoryOk = active === 'all' || skill.dataset.cat === active;
-        const searchOk = !q || skill.textContent.toLowerCase().includes(q);
-        skill.classList.toggle('hidden', !(categoryOk && searchOk));
-      });
-    }
-
-    filters.forEach(btn => {
-      btn.addEventListener('click', () => {
-        active = btn.dataset.cat;
-        filters.forEach(b => b.classList.toggle('active', b === btn));
-        applySkillFilters();
-      });
-    });
-
-    search.addEventListener('input', applySkillFilters);
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 
 </body>
 </html>
-'''
-
-path = Path("/mnt/data/index_canva_editorial.html")
-path.write_text(html, encoding="utf-8")
-print(f"Created {path} ({path.stat().st_size:,} bytes)")
