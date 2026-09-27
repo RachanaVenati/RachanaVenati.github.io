@@ -1,770 +1,779 @@
 from pathlib import Path
 
 html = r'''<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Rachana Venati — AI Engineer working across retrieval-augmented generation, NLP, multimodal learning, software engineering and reliable AI systems." />
+  <meta name="description" content="Rachana Venati — AI Engineer working across information retrieval, RAG, multimodal learning, software engineering and reliable AI systems." />
   <title>Rachana Venati — AI Engineer</title>
   <style>
-    :root {
-      --bg: #0b0d10;
-      --bg-soft: #111419;
-      --surface: #12161b;
-      --surface-2: #171c22;
-      --text: #f4f6f8;
-      --muted: #9ba4ae;
-      --faint: #69727c;
-      --line: #232a31;
-      --accent: #8ad5c8;
-      --accent-2: #b7efe5;
-      --max: 1120px;
-      --radius: 16px;
-    }
-
-    html[data-theme="light"] {
-      --bg: #fbfbfa;
-      --bg-soft: #f4f5f4;
-      --surface: #ffffff;
-      --surface-2: #f6f7f7;
-      --text: #111417;
-      --muted: #5f6872;
-      --faint: #8b939b;
-      --line: #e7e9eb;
-      --accent: #0d7f72;
-      --accent-2: #0a675e;
-    }
-
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.65;
-      letter-spacing: -0.01em;
-      transition: background .2s ease, color .2s ease;
-    }
-
-    a { color: inherit; }
-    button, input { font: inherit; }
-
-    .container {
-      width: min(calc(100% - 40px), var(--max));
-      margin: 0 auto;
-    }
-
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: color-mix(in srgb, var(--bg) 86%, transparent);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .nav-inner {
-      min-height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand {
-      font-weight: 800;
-      font-size: 1.1rem;
-      text-decoration: none;
-      letter-spacing: -0.04em;
-    }
-
-    .brand span { color: var(--accent); }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--muted);
-      font-size: .9rem;
-      font-weight: 650;
-    }
-
-    .nav-links a:hover { color: var(--text); }
-
-    .theme-toggle {
-      width: 38px;
-      height: 38px;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      background: transparent;
-      color: var(--muted);
-      cursor: pointer;
+    :root{
+      --bg:#f1f1ef;
+      --paper:#f8f8f6;
+      --ink:#111111;
+      --muted:#666662;
+      --soft:#d8d8d3;
+      --line:#b9b9b3;
+      --black:#0b0b0b;
+      --max:1240px;
     }
 
-    .hero {
-      min-height: 74vh;
-      display: flex;
-      align-items: center;
-      padding: 92px 0 72px;
-      border-bottom: 1px solid var(--line);
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:Arial, Helvetica, sans-serif;
+      line-height:1.5;
     }
 
-    .hero-copy { max-width: 860px; }
+    a{color:inherit}
+    button,input{font:inherit}
+    img{max-width:100%;display:block}
 
-    .kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--accent);
-      font-size: .82rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .13em;
-      margin-bottom: 22px;
+    .wrap{
+      width:min(calc(100% - 48px),var(--max));
+      margin:0 auto;
     }
 
-    .kicker::before {
-      content: "";
-      width: 28px;
-      height: 1px;
-      background: var(--accent);
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      background:rgba(241,241,239,.94);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line);
     }
 
-    h1 {
-      margin: 0;
-      max-width: 850px;
-      font-size: clamp(3.7rem, 9vw, 7.5rem);
-      line-height: .91;
-      letter-spacing: -.075em;
-      font-weight: 780;
+    .nav{
+      height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+
+    .monogram{
+      text-decoration:none;
+      font-size:1rem;
+      font-weight:800;
+      letter-spacing:.08em;
     }
+
+    .navlinks{
+      display:flex;
+      align-items:center;
+      gap:26px;
+      flex-wrap:wrap;
+    }
 
-    .hero-subtitle {
-      max-width: 760px;
-      margin: 28px 0 0;
-      color: var(--muted);
-      font-size: clamp(1.08rem, 2vw, 1.35rem);
-      line-height: 1.55;
-    }
+    .navlinks a{
+      text-decoration:none;
+      text-transform:uppercase;
+      font-size:.72rem;
+      font-weight:700;
+      letter-spacing:.11em;
+    }
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 30px;
-    }
+    .navlinks a:hover{opacity:.55}
+
+    .hero{
+      padding:34px 0 80px;
+      border-bottom:1px solid var(--line);
+    }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 45px;
-      padding: 10px 17px;
-      border-radius: 10px;
-      border: 1px solid var(--line);
-      text-decoration: none;
-      font-weight: 750;
-      font-size: .92rem;
-      transition: .18s ease;
-    }
+    .hero-grid{
+      min-height:650px;
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:38px;
+    }
 
-    .btn.primary {
-      background: var(--text);
-      color: var(--bg);
-      border-color: var(--text);
+    .hero-left{
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:40px 0 12px;
+    }
+
+    .hero-index{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:.72rem;
+    }
+
+    .hero-title{
+      margin:0;
+      font-family:Georgia, "Times New Roman", serif;
+      font-weight:400;
+      font-size:clamp(5rem,12vw,10rem);
+      line-height:.78;
+      letter-spacing:-.075em;
+    }
+
+    .hero-title span{
+      display:block;
+      margin-left:8vw;
+      font-style:italic;
+      font-weight:400;
+    }
+
+    .hero-bottom{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:30px;
+      align-items:end;
+    }
+
+    .hero-copy{
+      max-width:420px;
+      margin:0;
+      font-size:1.04rem;
+      color:var(--muted);
+    }
+
+    .hero-links{
+      display:flex;
+      justify-content:flex-end;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:18px;
+    }
+
+    .hero-links a{
+      text-decoration:none;
+      border-bottom:1px solid var(--ink);
+      padding-bottom:3px;
+      font-size:.8rem;
+      text-transform:uppercase;
+      letter-spacing:.09em;
+      font-weight:700;
+    }
+
+    .hero-panel{
+      background:var(--black);
+      color:#fff;
+      min-height:100%;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:28px;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .hero-panel::before,
+    .hero-panel::after{
+      content:"";
+      position:absolute;
+      border:1px solid rgba(255,255,255,.34);
+      border-radius:50%;
+    }
+
+    .hero-panel::before{
+      width:420px;
+      height:420px;
+      right:-210px;
+      top:90px;
+    }
+
+    .hero-panel::after{
+      width:250px;
+      height:250px;
+      left:-130px;
+      bottom:50px;
     }
-
-    .btn.secondary {
-      color: var(--text);
-      background: transparent;
+
+    .panel-top{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      text-transform:uppercase;
+      font-size:.7rem;
+      letter-spacing:.12em;
+      position:relative;
+      z-index:2;
     }
 
-    .btn:hover { transform: translateY(-2px); }
+    .panel-word{
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:clamp(3.8rem,7vw,7.2rem);
+      line-height:.87;
+      letter-spacing:-.06em;
+      position:relative;
+      z-index:2;
+      margin:auto 0;
+    }
 
-    .quick-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-      margin-top: 34px;
-      color: var(--faint);
-      font-size: .9rem;
+    .panel-word em{
+      display:block;
+      font-weight:400;
+      color:#aaa;
     }
 
-    .quick-meta a {
-      text-decoration: none;
-      color: var(--muted);
+    .panel-foot{
+      display:flex;
+      justify-content:space-between;
+      color:#bdbdbd;
+      text-transform:uppercase;
+      font-size:.68rem;
+      letter-spacing:.1em;
+      position:relative;
+      z-index:2;
     }
 
-    .quick-meta a:hover { color: var(--text); }
-
-    main { padding-bottom: 60px; }
-
-    section {
-      padding: 92px 0 18px;
-      scroll-margin-top: 82px;
+    section{
+      padding:105px 0;
+      border-bottom:1px solid var(--line);
+      scroll-margin-top:80px;
     }
-
-    .section-grid {
-      display: grid;
-      grid-template-columns: 210px minmax(0, 1fr);
-      gap: 72px;
+
+    .section-head{
+      display:grid;
+      grid-template-columns:160px minmax(0,1fr);
+      gap:40px;
+      margin-bottom:58px;
+      align-items:start;
     }
 
-    .section-label {
-      color: var(--faint);
-      font-size: .78rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .14em;
-      padding-top: 6px;
+    .section-no{
+      font-size:.72rem;
+      color:var(--muted);
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      padding-top:10px;
     }
 
-    .section-content h2 {
-      margin: 0 0 28px;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.07;
-      letter-spacing: -.05em;
+    .section-title{
+      font-family:Georgia, "Times New Roman", serif;
+      font-weight:400;
+      font-size:clamp(3.5rem,7vw,7rem);
+      line-height:.88;
+      letter-spacing:-.06em;
+      margin:0;
     }
 
-    .lead {
-      color: var(--muted);
-      font-size: 1.08rem;
-      max-width: 780px;
-      margin: 0;
-    }
+    .section-title em{font-weight:400}
 
-    /* ABOUT */
-    .about-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      overflow: hidden;
-      margin-top: 34px;
+    .about-layout{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:64px;
+      align-items:start;
     }
 
-    .about-item {
-      background: var(--surface);
-      padding: 24px;
-      min-height: 150px;
+    .about-statement{
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:clamp(2rem,4vw,4.1rem);
+      line-height:1.06;
+      letter-spacing:-.045em;
+      margin:0;
     }
 
-    .about-item small {
-      display: block;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      font-weight: 800;
-      margin-bottom: 18px;
+    .about-side{
+      display:grid;
+      gap:30px;
     }
 
-    .about-item strong {
-      display: block;
-      font-size: 1.18rem;
-      letter-spacing: -.03em;
-      margin-bottom: 8px;
+    .about-side p{
+      margin:0;
+      color:var(--muted);
+      font-size:1rem;
+      max-width:600px;
     }
 
-    .about-item p {
-      margin: 0;
-      color: var(--muted);
-      font-size: .92rem;
+    .about-mini{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      border-top:1px solid var(--ink);
     }
 
-    /* KNOWLEDGE */
-    .knowledge-shell {
-      margin-top: 28px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--surface);
-      overflow: hidden;
+    .mini{
+      padding:16px 10px 0 0;
     }
 
-    .knowledge-top {
-      padding: 18px;
-      border-bottom: 1px solid var(--line);
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      flex-wrap: wrap;
+    .mini + .mini{border-left:1px solid var(--line);padding-left:16px}
+    .mini strong{
+      display:block;
+      margin-bottom:6px;
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:1.25rem;
+      font-weight:400;
     }
-
-    .search {
-      flex: 1 1 260px;
-      min-height: 44px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: var(--bg);
-      color: var(--text);
-      padding: 0 14px;
-      outline: none;
+    .mini span{
+      color:var(--muted);
+      font-size:.8rem;
     }
 
-    .search:focus { border-color: var(--accent); }
+    .experience-list{border-top:1px solid var(--ink)}
+    .exp{
+      display:grid;
+      grid-template-columns:170px 1.15fr 1fr;
+      gap:34px;
+      padding:28px 0;
+      border-bottom:1px solid var(--line);
+    }
 
-    .filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+    .exp-date{
+      color:var(--muted);
+      font-size:.82rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
     }
 
-    .filter {
-      border: 1px solid var(--line);
-      background: transparent;
-      color: var(--muted);
-      padding: 8px 11px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-weight: 700;
-      font-size: .78rem;
+    .exp-role h3{
+      margin:0 0 3px;
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:1.65rem;
+      font-weight:400;
+      line-height:1.1;
+    }
+    .exp-role p{
+      margin:0;
+      color:var(--muted);
+      font-size:.88rem;
     }
 
-    .filter.active,
-    .filter:hover {
-      color: var(--bg);
-      background: var(--accent);
-      border-color: var(--accent);
+    .exp-desc{
+      color:var(--muted);
+      font-size:.9rem;
     }
+    .exp-desc ul{margin:0;padding-left:18px}
+    .exp-desc li+li{margin-top:6px}
+
+    .projects-intro{
+      display:grid;
+      grid-template-columns:1fr .8fr;
+      gap:50px;
+      align-items:end;
+      margin-bottom:36px;
+    }
+
+    .projects-intro p{
+      margin:0;
+      color:var(--muted);
+      max-width:540px;
+    }
 
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0,1fr));
+    .projects-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:1px;
+      background:var(--line);
+      border:1px solid var(--line);
     }
 
-    .skill {
-      padding: 15px 16px;
-      border-right: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      min-height: 74px;
-      background: var(--surface);
-      transition: background .15s ease;
+    .project{
+      background:var(--paper);
+      min-height:430px;
+      padding:26px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      transition:background .2s ease,color .2s ease;
+    }
+
+    .project:hover{
+      background:var(--black);
+      color:#fff;
     }
 
-    .skill:hover { background: var(--surface-2); }
+    .project:hover .project-copy,
+    .project:hover .project-tags{color:#bbb}
+    .project:hover .project-tags span{border-color:#555}
+    .project:hover .project-link{border-color:#fff}
 
-    .skill strong {
-      display: block;
-      font-size: .92rem;
-      margin-bottom: 4px;
+    .project.feature{
+      grid-column:span 2;
+      min-height:500px;
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:50px;
     }
 
-    .skill span {
-      color: var(--faint);
-      font-size: .76rem;
-      text-transform: uppercase;
-      letter-spacing: .08em;
+    .project-id{
+      color:var(--muted);
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:.11em;
+      margin-bottom:40px;
     }
 
-    .skill.hidden { display: none; }
+    .project h3{
+      margin:0 0 14px;
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:clamp(2rem,3vw,3.8rem);
+      font-weight:400;
+      line-height:.96;
+      letter-spacing:-.05em;
+    }
 
-    /* EXPERIENCE */
-    .timeline {
-      border-top: 1px solid var(--line);
+    .project-copy{
+      margin:0;
+      color:var(--muted);
+      max-width:620px;
+      font-size:.95rem;
     }
 
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 170px minmax(0, 1fr);
-      gap: 28px;
-      padding: 30px 0;
-      border-bottom: 1px solid var(--line);
+    .project-tags{
+      display:flex;
+      gap:7px;
+      flex-wrap:wrap;
+      margin-top:20px;
+      color:var(--muted);
     }
 
-    .timeline-date {
-      color: var(--faint);
-      font-size: .86rem;
-      padding-top: 3px;
+    .project-tags span{
+      border:1px solid var(--line);
+      padding:5px 8px;
+      font-size:.68rem;
+      text-transform:uppercase;
+      letter-spacing:.06em;
     }
 
-    .timeline-body h3 {
-      margin: 0;
-      font-size: 1.18rem;
-      letter-spacing: -.025em;
+    .project-link{
+      display:inline-block;
+      width:max-content;
+      margin-top:30px;
+      text-decoration:none;
+      border-bottom:1px solid var(--ink);
+      padding-bottom:4px;
+      font-size:.75rem;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      font-weight:700;
     }
 
-    .company {
-      color: var(--accent);
-      font-weight: 700;
-      margin: 4px 0 14px;
-      font-size: .92rem;
+    .metrics{
+      display:grid;
+      align-content:end;
+      border-top:1px solid var(--line);
     }
 
-    .timeline-body ul {
-      margin: 0;
-      padding-left: 20px;
-      color: var(--muted);
+    .metric{
+      padding:18px 0;
+      border-bottom:1px solid var(--line);
     }
+    .metric strong{
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:2rem;
+      font-weight:400;
+      display:block;
+      margin-bottom:3px;
+    }
+    .metric span{
+      color:var(--muted);
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
 
-    .timeline-body li + li { margin-top: 7px; }
+    .knowledge-layout{
+      display:grid;
+      grid-template-columns:310px 1fr;
+      gap:50px;
+      align-items:start;
+    }
 
-    /* PROJECTS */
-    .projects {
-      border-top: 1px solid var(--line);
+    .knowledge-copy{
+      position:sticky;
+      top:100px;
     }
 
-    .project {
-      display: grid;
-      grid-template-columns: 70px minmax(0, 1fr) auto;
-      gap: 24px;
-      padding: 30px 0;
-      border-bottom: 1px solid var(--line);
-      align-items: start;
+    .knowledge-copy p{
+      color:var(--muted);
+      margin:18px 0 24px;
     }
 
-    .project-num {
-      color: var(--faint);
-      font-size: .8rem;
-      font-weight: 800;
-      letter-spacing: .1em;
-      padding-top: 4px;
+    .skill-search{
+      width:100%;
+      border:0;
+      border-bottom:1px solid var(--ink);
+      background:transparent;
+      padding:10px 0;
+      outline:none;
+      color:var(--ink);
     }
 
-    .project h3 {
-      margin: 0 0 6px;
-      font-size: 1.28rem;
-      letter-spacing: -.03em;
+    .skill-filters{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:14px;
     }
 
-    .project p {
-      color: var(--muted);
-      margin: 0;
-      max-width: 760px;
+    .skill-filter{
+      border:1px solid var(--line);
+      background:transparent;
+      padding:6px 9px;
+      cursor:pointer;
+      font-size:.67rem;
+      text-transform:uppercase;
+      letter-spacing:.07em;
     }
 
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-top: 14px;
+    .skill-filter.active,
+    .skill-filter:hover{
+      background:var(--black);
+      color:#fff;
+      border-color:var(--black);
     }
 
-    .tag {
-      color: var(--muted);
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 5px 9px;
-      font-size: .74rem;
-      font-weight: 700;
+    .skills{
+      border-top:1px solid var(--ink);
     }
 
-    .project-link {
-      text-decoration: none;
-      color: var(--accent);
-      font-size: .86rem;
-      font-weight: 800;
-      white-space: nowrap;
-      padding-top: 3px;
+    .skill{
+      display:grid;
+      grid-template-columns:50px 1fr auto;
+      gap:18px;
+      padding:14px 0;
+      border-bottom:1px solid var(--line);
+      align-items:center;
     }
 
-    .project-link:hover { color: var(--accent-2); }
+    .skill.hidden{display:none}
 
-    .featured-project {
-      margin: 34px 0 4px;
-      padding: 28px;
-      border-radius: var(--radius);
-      background: var(--surface);
-      border: 1px solid var(--line);
+    .skill-num{
+      color:var(--muted);
+      font-size:.7rem;
     }
 
-    .featured-project .eyeline {
-      color: var(--accent);
-      font-size: .76rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      font-weight: 800;
-      margin-bottom: 14px;
+    .skill strong{
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:1.18rem;
+      font-weight:400;
     }
 
-    .featured-project h3 {
-      margin: 0 0 10px;
-      font-size: 1.45rem;
-      letter-spacing: -.035em;
+    .skill span{
+      color:var(--muted);
+      font-size:.67rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
     }
 
-    .featured-project p {
-      color: var(--muted);
-      max-width: 780px;
+    .edu-list,
+    .cert-list{
+      border-top:1px solid var(--ink);
     }
 
-    .metrics {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      border-top: 1px solid var(--line);
-      margin-top: 22px;
+    .edu,
+    .cert{
+      display:grid;
+      grid-template-columns:180px 1fr auto;
+      gap:32px;
+      border-bottom:1px solid var(--line);
+      padding:27px 0;
+      align-items:start;
     }
 
-    .metric {
-      padding: 20px 18px 4px 0;
+    .edu-date,.cert-date{
+      color:var(--muted);
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
     }
 
-    .metric + .metric {
-      padding-left: 18px;
-      border-left: 1px solid var(--line);
+    .edu h3,.cert h3{
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:1.55rem;
+      font-weight:400;
+      margin:0 0 4px;
     }
 
-    .metric strong {
-      display: block;
-      font-size: 1.2rem;
-      margin-bottom: 3px;
+    .edu p,.cert p{
+      margin:0;
+      color:var(--muted);
+      font-size:.88rem;
     }
 
-    .metric span {
-      color: var(--faint);
-      font-size: .78rem;
+    .edu-grade{
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:1.2rem;
     }
 
-    /* EDUCATION & CERTS */
-    .edu-row,
-    .cert-row {
-      display: grid;
-      grid-template-columns: 170px minmax(0, 1fr);
-      gap: 28px;
-      padding: 26px 0;
-      border-bottom: 1px solid var(--line);
+    .contact{
+      padding-bottom:80px;
     }
 
-    .edu-row:first-child,
-    .cert-row:first-child { border-top: 1px solid var(--line); }
-
-    .edu-row h3,
-    .cert-row h3 {
-      margin: 0 0 4px;
-      font-size: 1.1rem;
-      letter-spacing: -.02em;
+    .contact-layout{
+      display:grid;
+      grid-template-columns:1.25fr .75fr;
+      gap:70px;
+      align-items:end;
     }
 
-    .edu-row p,
-    .cert-row p {
-      margin: 0;
-      color: var(--muted);
+    .contact-title{
+      font-family:Georgia, "Times New Roman", serif;
+      font-weight:400;
+      font-size:clamp(4rem,9vw,9rem);
+      line-height:.83;
+      letter-spacing:-.07em;
+      margin:0;
     }
 
-    /* CONTACT */
-    .contact-box {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 34px;
-      background: var(--surface);
+    .contact-title em{
+      display:block;
+      margin-left:10vw;
     }
-
-    .contact-box h2 { margin-bottom: 10px; }
 
-    .contact-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-top: 24px;
+    .contact-side p{
+      color:var(--muted);
+      margin:0 0 28px;
     }
 
-    .contact-links a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 750;
+    .contact-links{
+      border-top:1px solid var(--ink);
     }
 
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 28px 0 40px;
-      color: var(--faint);
-      font-size: .86rem;
+    .contact-links a{
+      display:flex;
+      justify-content:space-between;
+      text-decoration:none;
+      padding:13px 0;
+      border-bottom:1px solid var(--line);
+      text-transform:uppercase;
+      font-size:.72rem;
+      letter-spacing:.08em;
     }
 
-    @media (max-width: 900px) {
-      .section-grid { grid-template-columns: 1fr; gap: 18px; }
-      .section-label { padding-top: 0; }
-      .about-grid { grid-template-columns: 1fr; }
-      .skills-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
-      .project { grid-template-columns: 48px minmax(0,1fr); }
-      .project-link { grid-column: 2; }
+    footer{
+      padding:24px 0 32px;
+      font-size:.75rem;
+      text-transform:uppercase;
+      letter-spacing:.09em;
+      color:var(--muted);
     }
 
-    @media (max-width: 680px) {
-      .container { width: min(calc(100% - 28px), var(--max)); }
-      .nav-links a { display: none; }
-      .hero { min-height: auto; padding: 70px 0 58px; }
-      h1 { font-size: clamp(3.4rem, 17vw, 5.4rem); }
-      section { padding-top: 72px; }
-      .timeline-item,
-      .edu-row,
-      .cert-row {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-      .skills-grid { grid-template-columns: 1fr; }
-      .project {
-        grid-template-columns: 1fr;
-        gap: 8px;
-      }
-      .project-link { grid-column: 1; }
-      .metrics { grid-template-columns: 1fr; }
-      .metric + .metric {
-        border-left: 0;
-        border-top: 1px solid var(--line);
-        padding-left: 0;
-      }
+    @media(max-width:900px){
+      .hero-grid{grid-template-columns:1fr;min-height:0}
+      .hero-panel{min-height:480px}
+      .section-head{grid-template-columns:1fr;gap:12px}
+      .about-layout,.projects-intro,.knowledge-layout,.contact-layout{grid-template-columns:1fr}
+      .knowledge-copy{position:static}
+      .exp{grid-template-columns:1fr;gap:10px}
+      .projects-grid{grid-template-columns:1fr}
+      .project.feature{grid-column:span 1;grid-template-columns:1fr}
+      .edu,.cert{grid-template-columns:1fr;gap:8px}
+      .edu-grade{margin-top:5px}
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      * { transition: none !important; }
+    @media(max-width:650px){
+      .wrap{width:min(calc(100% - 28px),var(--max))}
+      .navlinks a{display:none}
+      .hero{padding-top:16px}
+      .hero-title{font-size:clamp(4.2rem,21vw,7rem)}
+      .hero-title span{margin-left:0}
+      .hero-bottom{grid-template-columns:1fr}
+      .hero-links{justify-content:flex-start}
+      section{padding:76px 0}
+      .about-mini{grid-template-columns:1fr}
+      .mini+.mini{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:16px;margin-top:16px}
+      .project{min-height:380px}
     }
   </style>
 </head>
 <body>
 
-  <nav class="nav">
-    <div class="container nav-inner">
-      <a class="brand" href="#top">RV<span>.</span></a>
-      <div class="nav-links">
+  <header class="topbar">
+    <div class="wrap nav">
+      <a href="#top" class="monogram">RV</a>
+      <nav class="navlinks">
         <a href="#about">About</a>
-        <a href="#knowledge">Knowledge</a>
         <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
         <a href="#education">Education</a>
-        <a href="#certifications">Certifications</a>
         <a href="#contact">Contact</a>
-        <button class="theme-toggle" type="button" aria-label="Toggle color theme">◐</button>
-      </div>
-    </div>
-  </nav>
-
-  <header class="hero" id="top">
-    <div class="container">
-      <div class="hero-copy">
-        <div class="kicker">AI Engineer · Germany</div>
-        <h1>Rachana<br>Venati</h1>
-        <p class="hero-subtitle">
-          AI engineer focused on retrieval-augmented generation, information retrieval,
-          multimodal learning, and reliable production systems.
-        </p>
-
-        <div class="hero-actions">
-          <a class="btn primary" href="#projects">View work</a>
-          <a class="btn secondary" href="assets/Rachana_Venati_Resume.pdf" target="_blank" rel="noreferrer">Résumé</a>
-        </div>
-
-        <div class="quick-meta">
-          <span>Germany</span>
-          <a href="mailto:rachanavenati@gmail.com">Email</a>
-          <a href="https://www.linkedin.com/in/rachanavenati" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a href="https://github.com/RachanaVenati" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="https://huggingface.co/RachanaV" target="_blank" rel="noreferrer">Hugging Face</a>
-        </div>
-      </div>
+      </nav>
     </div>
   </header>
 
-  <main class="container">
+  <main id="top">
 
-    <section id="about">
-      <div class="section-grid">
-        <div class="section-label">01 · About</div>
-        <div class="section-content">
-          <h2>Research-minded engineering, built for production.</h2>
-          <p class="lead">
-            I work across the full AI engineering stack — from retrieval experiments and
-            model evaluation to APIs, cloud deployment, automation, and product integration.
-          </p>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-left">
+          <div class="hero-index">
+            <span>Portfolio / 2026</span>
+            <span>Germany</span>
+          </div>
 
-          <div class="about-grid">
-            <div class="about-item">
-              <small>01</small>
-              <strong>Build</strong>
-              <p>RAG systems, multimodal ML pipelines, APIs, and product-facing AI features.</p>
-            </div>
-            <div class="about-item">
-              <small>02</small>
-              <strong>Research</strong>
-              <p>Information retrieval, explainable ranking, health IR, and systematic evaluation.</p>
-            </div>
-            <div class="about-item">
-              <small>03</small>
-              <strong>Deploy</strong>
-              <p>Cloud infrastructure, containers, automation workflows, and production debugging.</p>
+          <h1 class="hero-title">
+            Rachana
+            <span>Venati</span>
+          </h1>
+
+          <div class="hero-bottom">
+            <p class="hero-copy">
+              AI engineer working across retrieval-augmented generation,
+              information retrieval, multimodal learning, automation,
+              and production software systems.
+            </p>
+            <div class="hero-links">
+              <a href="#projects">View projects</a>
+              <a href="assets/Rachana_Venati_Resume.pdf" target="_blank">Résumé</a>
             </div>
           </div>
         </div>
+
+        <aside class="hero-panel" aria-label="Portfolio focus">
+          <div class="panel-top">
+            <span>AI Engineering</span>
+            <span>01</span>
+          </div>
+          <div class="panel-word">
+            Research
+            <em>meets</em>
+            Engineering
+          </div>
+          <div class="panel-foot">
+            <span>RAG · NLP · IR</span>
+            <span>2026</span>
+          </div>
+        </aside>
       </div>
     </section>
 
-    <section id="knowledge">
-      <div class="section-grid">
-        <div class="section-label">02 · Knowledge</div>
-        <div class="section-content">
-          <h2>Knowledge universe.</h2>
-          <p class="lead">A compact view of the tools and concepts used across my projects and professional experience.</p>
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-no">01 / About</div>
+          <h2 class="section-title">A focused approach to <em>applied AI.</em></h2>
+        </div>
 
-          <div class="knowledge-shell">
-            <div class="knowledge-top">
-              <input class="search" id="skillSearch" type="search" placeholder="Search skills — e.g. RAG, PyTorch, Docker" aria-label="Search skills">
-              <div class="filters">
-                <button class="filter active" data-category="all">All</button>
-                <button class="filter" data-category="ai">AI / IR</button>
-                <button class="filter" data-category="ml">ML</button>
-                <button class="filter" data-category="software">Software</button>
-                <button class="filter" data-category="cloud">Cloud</button>
-                <button class="filter" data-category="systems">Systems</button>
+        <div class="about-layout">
+          <p class="about-statement">
+            I move between research questions and production constraints — building systems that can be measured, explained, and shipped.
+          </p>
+
+          <div class="about-side">
+            <p>
+              My work spans retrieval systems, multimodal machine learning,
+              software engineering, APIs, cloud deployment and automation.
+              I care about clear evaluation, maintainable implementations and
+              practical outcomes.
+            </p>
+
+            <div class="about-mini">
+              <div class="mini">
+                <strong>Research</strong>
+                <span>Information retrieval, ranking, evaluation</span>
               </div>
-            </div>
-
-            <div class="skills-grid" id="skillsGrid">
-              <div class="skill" data-category="ai"><strong>RAG</strong><span>AI / IR</span></div>
-              <div class="skill" data-category="ai"><strong>Agentic AI</strong><span>AI / IR</span></div>
-              <div class="skill" data-category="ai"><strong>Information Retrieval</strong><span>AI / IR</span></div>
-              <div class="skill" data-category="ai"><strong>BM25</strong><span>AI / IR</span></div>
-              <div class="skill" data-category="ai"><strong>Vector Search</strong><span>AI / IR</span></div>
-              <div class="skill" data-category="ai"><strong>Hybrid Search</strong><span>AI / IR</span></div>
-              <div class="skill" data-category="ai"><strong>Reranking</strong><span>AI / IR</span></div>
-              <div class="skill" data-category="ai"><strong>Semantic Chunking</strong><span>AI / IR</span></div>
-              <div class="skill" data-category="ai"><strong>Late Chunking</strong><span>AI / IR</span></div>
-              <div class="skill" data-category="ai"><strong>Prompt Engineering</strong><span>AI / IR</span></div>
-              <div class="skill" data-category="ai"><strong>LangGraph</strong><span>AI / IR</span></div>
-              <div class="skill" data-category="ai"><strong>Pyserini</strong><span>AI / IR</span></div>
-              <div class="skill" data-category="ai"><strong>PyTerrier</strong><span>AI / IR</span></div>
-              <div class="skill" data-category="ai"><strong>Weaviate</strong><span>AI / IR</span></div>
-              <div class="skill" data-category="ai"><strong>MeSH</strong><span>AI / IR</span></div>
-              <div class="skill" data-category="ml"><strong>PyTorch</strong><span>ML</span></div>
-              <div class="skill" data-category="ml"><strong>Scikit-learn</strong><span>ML</span></div>
-              <div class="skill" data-category="ml"><strong>RoBERTa</strong><span>ML</span></div>
-              <div class="skill" data-category="ml"><strong>Vision Transformer</strong><span>ML</span></div>
-              <div class="skill" data-category="ml"><strong>Sentence Transformers</strong><span>ML</span></div>
-              <div class="skill" data-category="ml"><strong>Hugging Face</strong><span>ML</span></div>
-              <div class="skill" data-category="ml"><strong>SVM</strong><span>ML</span></div>
-              <div class="skill" data-category="ml"><strong>Image Analysis</strong><span>ML</span></div>
-              <div class="skill" data-category="software"><strong>Python</strong><span>Software</span></div>
-              <div class="skill" data-category="software"><strong>JavaScript</strong><span>Software</span></div>
-              <div class="skill" data-category="software"><strong>C#</strong><span>Software</span></div>
-              <div class="skill" data-category="software"><strong>C++</strong><span>Software</span></div>
-              <div class="skill" data-category="software"><strong>MATLAB</strong><span>Software</span></div>
-              <div class="skill" data-category="software"><strong>FastAPI</strong><span>Software</span></div>
-              <div class="skill" data-category="software"><strong>Pydantic</strong><span>Software</span></div>
-              <div class="skill" data-category="software"><strong>Pandas</strong><span>Software</span></div>
-              <div class="skill" data-category="software"><strong>Git</strong><span>Software</span></div>
-              <div class="skill" data-category="software"><strong>Pytest</strong><span>Software</span></div>
-              <div class="skill" data-category="cloud"><strong>Google Cloud</strong><span>Cloud</span></div>
-              <div class="skill" data-category="cloud"><strong>Docker</strong><span>Cloud</span></div>
-              <div class="skill" data-category="cloud"><strong>Netcup</strong><span>Cloud</span></div>
-              <div class="skill" data-category="cloud"><strong>n8n</strong><span>Cloud</span></div>
-              <div class="skill" data-category="cloud"><strong>Activepieces</strong><span>Cloud</span></div>
-              <div class="skill" data-category="systems"><strong>Android</strong><span>Systems</span></div>
-              <div class="skill" data-category="systems"><strong>iOS</strong><span>Systems</span></div>
-              <div class="skill" data-category="systems"><strong>Volt MX / Kony</strong><span>Systems</span></div>
-              <div class="skill" data-category="systems"><strong>FCM / GCM / APNs</strong><span>Systems</span></div>
-              <div class="skill" data-category="systems"><strong>SLURM / HPC</strong><span>Systems</span></div>
-              <div class="skill" data-category="systems"><strong>Unity 3D</strong><span>Systems</span></div>
-              <div class="skill" data-category="systems"><strong>VR</strong><span>Systems</span></div>
-              <div class="skill" data-category="systems"><strong>Networking</strong><span>Systems</span></div>
+              <div class="mini">
+                <strong>Build</strong>
+                <span>RAG, multimodal ML, APIs, product systems</span>
+              </div>
+              <div class="mini">
+                <strong>Deploy</strong>
+                <span>Cloud, containers, automation, debugging</span>
+              </div>
             </div>
           </div>
         </div>
@@ -772,210 +781,335 @@ html = r'''<!DOCTYPE html>
     </section>
 
     <section id="experience">
-      <div class="section-grid">
-        <div class="section-label">03 · Experience</div>
-        <div class="section-content">
-          <h2>Professional experience.</h2>
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-no">02 / Experience</div>
+          <h2 class="section-title">Professional <em>experience.</em></h2>
+        </div>
 
-          <div class="timeline">
-            <article class="timeline-item">
-              <div class="timeline-date">Dec 2024 — Present</div>
-              <div class="timeline-body">
-                <h3>Working Student</h3>
-                <div class="company">Kontacts IT-Solutions GmbH · Potsdam, Germany</div>
-                <ul>
-                  <li>Developed and deployed a RAG system on Netcup and Google Cloud using vector search, keyword search, reranking, and agentic workflows.</li>
-                  <li>Built chatbot proofs of concept comparing late chunking, semantic chunking, embedding models, and retrieval strategies.</li>
-                  <li>Automated customer-order notifications and document updates with n8n and Activepieces.</li>
-                </ul>
-              </div>
-            </article>
+        <div class="experience-list">
+          <article class="exp">
+            <div class="exp-date">Dec 2024 — Present</div>
+            <div class="exp-role">
+              <h3>Working Student</h3>
+              <p>Kontacts IT-Solutions GmbH · Potsdam, Germany</p>
+            </div>
+            <div class="exp-desc">
+              <ul>
+                <li>Developed and deployed a RAG system on Netcup and Google Cloud using hybrid retrieval, reranking and agentic workflows.</li>
+                <li>Compared late chunking, semantic chunking, embeddings and retrieval strategies through chatbot proofs of concept.</li>
+                <li>Automated operational workflows with n8n and Activepieces.</li>
+              </ul>
+            </div>
+          </article>
 
-            <article class="timeline-item">
-              <div class="timeline-date">Jul 2020 — Sep 2023</div>
-              <div class="timeline-body">
-                <h3>Software Engineer II</h3>
-                <div class="company">HCL Software · India</div>
-                <ul>
-                  <li>Resolved 250+ critical defects across iOS, Android, and web versions of Volt MX.</li>
-                  <li>Supported push-notification systems using GCM, FCM, and APNs during high-load periods.</li>
-                  <li>Delivered technical enablement and knowledge-transfer sessions for newly onboarded teams.</li>
-                </ul>
-              </div>
-            </article>
+          <article class="exp">
+            <div class="exp-date">Jul 2020 — Sep 2023</div>
+            <div class="exp-role">
+              <h3>Software Engineer II</h3>
+              <p>HCL Software · India</p>
+            </div>
+            <div class="exp-desc">
+              <ul>
+                <li>Resolved 250+ critical defects across iOS, Android and web versions of Volt MX.</li>
+                <li>Supported push-notification systems using GCM, FCM and APNs.</li>
+                <li>Delivered technical enablement and knowledge-transfer sessions for newly onboarded teams.</li>
+              </ul>
+            </div>
+          </article>
 
-            <article class="timeline-item">
-              <div class="timeline-date">2018 — 2020</div>
-              <div class="timeline-body">
-                <h3>Associate Software Engineer</h3>
-                <div class="company">Kony / Temenos · India</div>
-                <ul>
-                  <li>Troubleshot Android product issues, completing 80% of cases within SLA requirements.</li>
-                  <li>Published technical articles and proofs of concept for product features and native Android integrations.</li>
-                </ul>
-              </div>
-            </article>
-          </div>
+          <article class="exp">
+            <div class="exp-date">2018 — 2020</div>
+            <div class="exp-role">
+              <h3>Associate Software Engineer</h3>
+              <p>Kony / Temenos · India</p>
+            </div>
+            <div class="exp-desc">
+              <ul>
+                <li>Troubleshot Android product issues, completing 80% of cases within SLA requirements.</li>
+                <li>Published technical articles and proofs of concept for product features and native Android integrations.</li>
+              </ul>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
     <section id="projects">
-      <div class="section-grid">
-        <div class="section-label">04 · Projects</div>
-        <div class="section-content">
-          <h2>Selected engineering work.</h2>
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-no">03 / Projects</div>
+          <h2 class="section-title">Selected <em>work.</em></h2>
+        </div>
 
-          <div class="featured-project">
-            <div class="eyeline">Master Thesis · Information Retrieval</div>
-            <h3>Experimental Evaluation of Axioms for Health Information Retrieval</h3>
-            <p>
-              Designed explainable ranking axioms for medical terminology, demographics,
-              recency, and evidence level; implemented pairwise preference functions,
-              majority voting, and KwikSort reranking; evaluated on TREC and CLEF benchmarks.
-            </p>
-            <div class="project-tags">
-              <span class="tag">Information Retrieval</span>
-              <span class="tag">MeSH</span>
-              <span class="tag">Reranking</span>
-              <span class="tag">Explainability</span>
-              <span class="tag">Evaluation</span>
+        <div class="projects-intro">
+          <p class="about-statement">Research, retrieval, multimodal learning and interactive systems.</p>
+          <p>
+            A selection of academic and engineering projects spanning
+            information retrieval, generative AI, computer vision,
+            data visualization and immersive systems.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+
+          <article class="project feature">
+            <div>
+              <div class="project-id">Featured / Master Thesis</div>
+              <h3>Experimental Evaluation of Axioms for Health Information Retrieval</h3>
+              <p class="project-copy">
+                Explainable health-search reranking using medical terminology,
+                demographics, recency and evidence-level axioms, evaluated on
+                TREC and CLEF benchmarks.
+              </p>
+              <div class="project-tags">
+                <span>Information Retrieval</span>
+                <span>MeSH</span>
+                <span>Reranking</span>
+                <span>Explainability</span>
+                <span>Evaluation</span>
+              </div>
             </div>
             <div class="metrics">
-              <div class="metric"><strong>0.492 → 0.524</strong><span>TREC 2021 nDCG@5</span></div>
-              <div class="metric"><strong>0.119 → 0.125</strong><span>CLEF 2017 nDCG@5</span></div>
-              <div class="metric"><strong>~90%</strong><span>Axiom / expert alignment</span></div>
+              <div class="metric">
+                <strong>0.492 → 0.524</strong>
+                <span>TREC 2021 nDCG@5</span>
+              </div>
+              <div class="metric">
+                <strong>0.119 → 0.125</strong>
+                <span>CLEF 2017 nDCG@5</span>
+              </div>
+              <div class="metric">
+                <strong>~90%</strong>
+                <span>Axiom / expert alignment</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project">
+            <div>
+              <div class="project-id">01 / Retrieval</div>
+              <h3>RAG for TREC 2024</h3>
+              <p class="project-copy">
+                Retrieval and answer-generation pipeline over MS MARCO using
+                sparse retrieval, vector refinement, Llama 3 and sentence-level citations.
+              </p>
+              <div class="project-tags">
+                <span>RAG</span><span>Pyserini</span><span>BM25</span><span>Weaviate</span><span>Llama 3</span>
+              </div>
+            </div>
+            <a class="project-link" href="https://github.com/RachanaVenati/RAG-TREC2024" target="_blank">View repository</a>
+          </article>
+
+          <article class="project">
+            <div>
+              <div class="project-id">02 / Multimodal ML</div>
+              <h3>Nutri-Score Sentiment Analysis</h3>
+              <p class="project-copy">
+                Text, image and fused classification using RoBERTa,
+                Vision Transformer models and FastAPI serving.
+              </p>
+              <div class="project-tags">
+                <span>PyTorch</span><span>RoBERTa</span><span>ViT</span><span>FastAPI</span>
+              </div>
+            </div>
+            <a class="project-link" href="https://github.com/RachanaVenati/Nutriscore-" target="_blank">View repository</a>
+          </article>
+
+          <article class="project">
+            <div>
+              <div class="project-id">03 / Visualization</div>
+              <h3>Music & Socioeconomic Visualization</h3>
+              <p class="project-copy">
+                Interactive exploration of relationships between global chart
+                music characteristics and socioeconomic indicators.
+              </p>
+              <div class="project-tags">
+                <span>JavaScript</span><span>Visualization</span><span>Analytics</span>
+              </div>
+            </div>
+            <a class="project-link" href="https://github.com/RachanaVenati/Visualization_music" target="_blank">View repository</a>
+          </article>
+
+          <article class="project">
+            <div>
+              <div class="project-id">04 / Computer Vision</div>
+              <h3>Crack Detection</h3>
+              <p class="project-copy">
+                MATLAB pipeline for segmentation, feature extraction,
+                SVM classification, skeletonization and crack measurement.
+              </p>
+              <div class="project-tags">
+                <span>MATLAB</span><span>Image Analysis</span><span>SVM</span>
+              </div>
+            </div>
+            <a class="project-link" href="https://github.com/RachanaVenati/CrackDetection" target="_blank">View repository</a>
+          </article>
+
+          <article class="project">
+            <div>
+              <div class="project-id">05 / XR</div>
+              <h3>Multiplayer Minigolf in VR</h3>
+              <p class="project-copy">
+                Unity 3D multiplayer game using physics, ray casting,
+                navigation, score logic and network synchronization.
+              </p>
+              <div class="project-tags">
+                <span>Unity 3D</span><span>C#</span><span>VR</span><span>Networking</span>
+              </div>
+            </div>
+            <a class="project-link" href="https://github.com/RachanaVenati/minigolf-VR" target="_blank">View repository</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-no">04 / Skills</div>
+          <h2 class="section-title">Technical <em>index.</em></h2>
+        </div>
+
+        <div class="knowledge-layout">
+          <div class="knowledge-copy">
+            <p>
+              Skills are shown as an index rather than badges or a visual cluster,
+              keeping the portfolio closer to the editorial style of the reference.
+            </p>
+            <input id="skillSearch" class="skill-search" type="search" placeholder="Search skill">
+            <div class="skill-filters">
+              <button class="skill-filter active" data-cat="all">All</button>
+              <button class="skill-filter" data-cat="ai">AI / IR</button>
+              <button class="skill-filter" data-cat="ml">ML</button>
+              <button class="skill-filter" data-cat="software">Software</button>
+              <button class="skill-filter" data-cat="cloud">Cloud</button>
+              <button class="skill-filter" data-cat="systems">Systems</button>
             </div>
           </div>
 
-          <div class="projects">
-            <article class="project">
-              <div class="project-num">01</div>
-              <div>
-                <h3>RAG for TREC 2024</h3>
-                <p>Retrieval and answer-generation pipeline over MS MARCO using sparse retrieval, vector refinement, Llama 3 generation, and sentence-level citations.</p>
-                <div class="project-tags"><span class="tag">RAG</span><span class="tag">Pyserini</span><span class="tag">BM25</span><span class="tag">Weaviate</span><span class="tag">Llama 3</span></div>
-              </div>
-              <a class="project-link" href="https://github.com/RachanaVenati/RAG-TREC2024" target="_blank" rel="noreferrer">View code ↗</a>
-            </article>
+          <div class="skills">
+            <div class="skill" data-cat="ai"><div class="skill-num">01</div><strong>RAG</strong><span>AI / IR</span></div>
+            <div class="skill" data-cat="ai"><div class="skill-num">02</div><strong>Agentic AI</strong><span>AI / IR</span></div>
+            <div class="skill" data-cat="ai"><div class="skill-num">03</div><strong>Information Retrieval</strong><span>AI / IR</span></div>
+            <div class="skill" data-cat="ai"><div class="skill-num">04</div><strong>BM25 / Hybrid Search</strong><span>AI / IR</span></div>
+            <div class="skill" data-cat="ai"><div class="skill-num">05</div><strong>Vector Search / Reranking</strong><span>AI / IR</span></div>
+            <div class="skill" data-cat="ai"><div class="skill-num">06</div><strong>Semantic & Late Chunking</strong><span>AI / IR</span></div>
+            <div class="skill" data-cat="ai"><div class="skill-num">07</div><strong>LangGraph</strong><span>AI / IR</span></div>
+            <div class="skill" data-cat="ai"><div class="skill-num">08</div><strong>Pyserini / PyTerrier</strong><span>AI / IR</span></div>
+            <div class="skill" data-cat="ai"><div class="skill-num">09</div><strong>Weaviate / MeSH</strong><span>AI / IR</span></div>
 
-            <article class="project">
-              <div class="project-num">02</div>
-              <div>
-                <h3>Nutri-Score Multimodal Sentiment Analysis</h3>
-                <p>Text, image, and fused classification pipeline combining RoBERTa, Vision Transformer models, and FastAPI serving.</p>
-                <div class="project-tags"><span class="tag">PyTorch</span><span class="tag">RoBERTa</span><span class="tag">ViT</span><span class="tag">FastAPI</span></div>
-              </div>
-              <a class="project-link" href="https://github.com/RachanaVenati/Nutriscore-" target="_blank" rel="noreferrer">View code ↗</a>
-            </article>
+            <div class="skill" data-cat="ml"><div class="skill-num">10</div><strong>PyTorch</strong><span>Machine Learning</span></div>
+            <div class="skill" data-cat="ml"><div class="skill-num">11</div><strong>Scikit-learn</strong><span>Machine Learning</span></div>
+            <div class="skill" data-cat="ml"><div class="skill-num">12</div><strong>RoBERTa</strong><span>Machine Learning</span></div>
+            <div class="skill" data-cat="ml"><div class="skill-num">13</div><strong>Vision Transformer</strong><span>Machine Learning</span></div>
+            <div class="skill" data-cat="ml"><div class="skill-num">14</div><strong>Sentence Transformers</strong><span>Machine Learning</span></div>
+            <div class="skill" data-cat="ml"><div class="skill-num">15</div><strong>Hugging Face</strong><span>Machine Learning</span></div>
+            <div class="skill" data-cat="ml"><div class="skill-num">16</div><strong>SVM / Image Analysis</strong><span>Machine Learning</span></div>
 
-            <article class="project">
-              <div class="project-num">03</div>
-              <div>
-                <h3>Music & Socioeconomic Data Visualization</h3>
-                <p>Interactive visual exploration of global chart music features and socioeconomic variables using calendar and geographic views.</p>
-                <div class="project-tags"><span class="tag">JavaScript</span><span class="tag">Visualization</span><span class="tag">Analytics</span></div>
-              </div>
-              <a class="project-link" href="https://github.com/RachanaVenati/Visualization_music" target="_blank" rel="noreferrer">View code ↗</a>
-            </article>
+            <div class="skill" data-cat="software"><div class="skill-num">17</div><strong>Python</strong><span>Software</span></div>
+            <div class="skill" data-cat="software"><div class="skill-num">18</div><strong>JavaScript</strong><span>Software</span></div>
+            <div class="skill" data-cat="software"><div class="skill-num">19</div><strong>C# / C++</strong><span>Software</span></div>
+            <div class="skill" data-cat="software"><div class="skill-num">20</div><strong>MATLAB</strong><span>Software</span></div>
+            <div class="skill" data-cat="software"><div class="skill-num">21</div><strong>FastAPI / Pydantic</strong><span>Software</span></div>
+            <div class="skill" data-cat="software"><div class="skill-num">22</div><strong>Pandas / Pytest / Git</strong><span>Software</span></div>
 
-            <article class="project">
-              <div class="project-num">04</div>
-              <div>
-                <h3>Crack Detection</h3>
-                <p>MATLAB image-analysis pipeline for segmentation, feature extraction, SVM classification, skeletonization, and crack-length measurement.</p>
-                <div class="project-tags"><span class="tag">MATLAB</span><span class="tag">Computer Vision</span><span class="tag">SVM</span></div>
-              </div>
-              <a class="project-link" href="https://github.com/RachanaVenati/CrackDetection" target="_blank" rel="noreferrer">View code ↗</a>
-            </article>
+            <div class="skill" data-cat="cloud"><div class="skill-num">23</div><strong>Google Cloud</strong><span>Cloud</span></div>
+            <div class="skill" data-cat="cloud"><div class="skill-num">24</div><strong>Docker</strong><span>Cloud</span></div>
+            <div class="skill" data-cat="cloud"><div class="skill-num">25</div><strong>Netcup</strong><span>Cloud</span></div>
+            <div class="skill" data-cat="cloud"><div class="skill-num">26</div><strong>n8n / Activepieces</strong><span>Automation</span></div>
 
-            <article class="project">
-              <div class="project-num">05</div>
-              <div>
-                <h3>Multiplayer Minigolf in VR</h3>
-                <p>Multiplayer Unity 3D game using physics, ray casting, navigation, score logic, and network synchronization.</p>
-                <div class="project-tags"><span class="tag">Unity 3D</span><span class="tag">C#</span><span class="tag">VR</span><span class="tag">Networking</span></div>
-              </div>
-              <a class="project-link" href="https://github.com/RachanaVenati/minigolf-VR" target="_blank" rel="noreferrer">View code ↗</a>
-            </article>
+            <div class="skill" data-cat="systems"><div class="skill-num">27</div><strong>Android / iOS / Web</strong><span>Systems</span></div>
+            <div class="skill" data-cat="systems"><div class="skill-num">28</div><strong>Volt MX / Kony</strong><span>Systems</span></div>
+            <div class="skill" data-cat="systems"><div class="skill-num">29</div><strong>FCM / GCM / APNs</strong><span>Systems</span></div>
+            <div class="skill" data-cat="systems"><div class="skill-num">30</div><strong>SLURM / HPC</strong><span>Systems</span></div>
+            <div class="skill" data-cat="systems"><div class="skill-num">31</div><strong>Unity 3D / VR / Networking</strong><span>Systems</span></div>
           </div>
         </div>
       </div>
     </section>
 
     <section id="education">
-      <div class="section-grid">
-        <div class="section-label">05 · Education</div>
-        <div class="section-content">
-          <h2>Academic background.</h2>
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-no">05 / Education</div>
+          <h2 class="section-title">Academic <em>background.</em></h2>
+        </div>
 
-          <div class="edu-row">
-            <div class="timeline-date">Oct 2023 — Jun 2026</div>
+        <div class="edu-list">
+          <article class="edu">
+            <div class="edu-date">Oct 2023 — Jun 2026</div>
             <div>
               <h3>M.Sc. Computer Science for Digital Media</h3>
-              <p>Bauhaus-Universität Weimar · Germany · GPA 1.5</p>
-              <!-- Add curriculum here once provided by Rachana. -->
+              <p>Bauhaus-Universität Weimar · Germany</p>
+              <!-- Course curriculum to be added after user provides course list. -->
             </div>
-          </div>
+            <div class="edu-grade">GPA 1.5</div>
+          </article>
 
-          <div class="edu-row">
-            <div class="timeline-date">Aug 2016 — Apr 2019</div>
+          <article class="edu">
+            <div class="edu-date">Aug 2016 — Apr 2019</div>
             <div>
               <h3>B.Tech. Information Technology</h3>
-              <p>Anna University · India · GPA 1.7</p>
-              <!-- Add curriculum here once provided by Rachana. -->
+              <p>Anna University · India</p>
+              <!-- Course curriculum to be added after user provides course list. -->
             </div>
-          </div>
+            <div class="edu-grade">GPA 1.7</div>
+          </article>
         </div>
       </div>
     </section>
 
     <section id="certifications">
-      <div class="section-grid">
-        <div class="section-label">06 · Certifications</div>
-        <div class="section-content">
-          <h2>Latest certifications.</h2>
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-no">06 / Certifications</div>
+          <h2 class="section-title">Latest <em>certifications.</em></h2>
+        </div>
 
-          <div class="cert-row">
-            <div class="timeline-date">Sep 2026</div>
-            <div>
-              <h3>Agentic AI</h3>
-              <p>DeepLearning.AI</p>
-            </div>
-          </div>
-
-          <div class="cert-row">
-            <div class="timeline-date">Aug 2026</div>
-            <div>
-              <h3>Transformers in Practice</h3>
-              <p>DeepLearning.AI</p>
-            </div>
-          </div>
-
-          <div class="cert-row">
-            <div class="timeline-date">Jun 2025</div>
-            <div>
-              <h3>Code in Place</h3>
-              <p>Stanford University</p>
-            </div>
-          </div>
+        <div class="cert-list">
+          <article class="cert">
+            <div class="cert-date">Sep 2026</div>
+            <div><h3>Agentic AI</h3><p>DeepLearning.AI</p></div>
+            <div>01</div>
+          </article>
+          <article class="cert">
+            <div class="cert-date">Aug 2026</div>
+            <div><h3>Transformers in Practice</h3><p>DeepLearning.AI</p></div>
+            <div>02</div>
+          </article>
+          <article class="cert">
+            <div class="cert-date">Jun 2025</div>
+            <div><h3>Code in Place</h3><p>Stanford University</p></div>
+            <div>03</div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="contact">
-      <div class="section-grid">
-        <div class="section-label">07 · Contact</div>
-        <div class="section-content">
-          <div class="contact-box">
-            <h2>Let’s build something useful.</h2>
-            <p class="lead">Open to conversations around AI engineering, retrieval systems, applied ML, and research-oriented product work.</p>
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-no">07 / Contact</div>
+          <div></div>
+        </div>
+
+        <div class="contact-layout">
+          <h2 class="contact-title">Let’s build<br><em>something useful.</em></h2>
+
+          <div class="contact-side">
+            <p>
+              Open to conversations around AI engineering,
+              retrieval systems, applied ML and research-oriented product work.
+            </p>
+
             <div class="contact-links">
-              <a href="mailto:rachanavenati@gmail.com">Email ↗</a>
-              <a href="https://www.linkedin.com/in/rachanavenati" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-              <a href="https://github.com/RachanaVenati" target="_blank" rel="noreferrer">GitHub ↗</a>
-              <a href="https://huggingface.co/RachanaV" target="_blank" rel="noreferrer">Hugging Face ↗</a>
-              <a href="https://www.kaggle.com/rachanavenati" target="_blank" rel="noreferrer">Kaggle ↗</a>
+              <a href="mailto:rachanavenati@gmail.com"><span>Email</span><span>↗</span></a>
+              <a href="https://www.linkedin.com/in/rachanavenati" target="_blank"><span>LinkedIn</span><span>↗</span></a>
+              <a href="https://github.com/RachanaVenati" target="_blank"><span>GitHub</span><span>↗</span></a>
+              <a href="https://huggingface.co/RachanaV" target="_blank"><span>Hugging Face</span><span>↗</span></a>
+              <a href="https://www.kaggle.com/rachanavenati" target="_blank"><span>Kaggle</span><span>↗</span></a>
             </div>
           </div>
         </div>
@@ -985,58 +1119,40 @@ html = r'''<!DOCTYPE html>
   </main>
 
   <footer>
-    <div class="container">© <span id="year"></span> Rachana Venati</div>
+    <div class="wrap">© <span id="year"></span> Rachana Venati · Germany</div>
   </footer>
 
   <script>
-    const root = document.documentElement;
-    const themeButton = document.querySelector('.theme-toggle');
-
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) root.dataset.theme = savedTheme;
-
-    function updateThemeButton() {
-      themeButton.textContent = root.dataset.theme === 'dark' ? '☀' : '◐';
-    }
-
-    themeButton.addEventListener('click', () => {
-      root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
-      localStorage.setItem('theme', root.dataset.theme);
-      updateThemeButton();
-    });
-    updateThemeButton();
-
     const search = document.getElementById('skillSearch');
-    const skillItems = [...document.querySelectorAll('.skill')];
-    const filterButtons = [...document.querySelectorAll('.filter')];
-    let activeCategory = 'all';
+    const filters = [...document.querySelectorAll('.skill-filter')];
+    const skills = [...document.querySelectorAll('.skill')];
+    let active = 'all';
 
-    function filterSkills() {
-      const query = search.value.trim().toLowerCase();
-
-      skillItems.forEach(item => {
-        const text = item.textContent.toLowerCase();
-        const categoryMatch = activeCategory === 'all' || item.dataset.category === activeCategory;
-        const searchMatch = !query || text.includes(query);
-        item.classList.toggle('hidden', !(categoryMatch && searchMatch));
+    function applySkillFilters(){
+      const q = search.value.toLowerCase().trim();
+      skills.forEach(skill => {
+        const categoryOk = active === 'all' || skill.dataset.cat === active;
+        const searchOk = !q || skill.textContent.toLowerCase().includes(q);
+        skill.classList.toggle('hidden', !(categoryOk && searchOk));
       });
     }
 
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        activeCategory = button.dataset.category;
-        filterButtons.forEach(b => b.classList.toggle('active', b === button));
-        filterSkills();
+    filters.forEach(btn => {
+      btn.addEventListener('click', () => {
+        active = btn.dataset.cat;
+        filters.forEach(b => b.classList.toggle('active', b === btn));
+        applySkillFilters();
       });
     });
 
-    search.addEventListener('input', filterSkills);
+    search.addEventListener('input', applySkillFilters);
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+
 </body>
 </html>
 '''
 
-out = Path("/mnt/data/index_clean_reference_style.html")
-out.write_text(html, encoding="utf-8")
-print(f"Created {out} ({out.stat().st_size:,} bytes)")
+path = Path("/mnt/data/index_canva_editorial.html")
+path.write_text(html, encoding="utf-8")
+print(f"Created {path} ({path.stat().st_size:,} bytes)")
