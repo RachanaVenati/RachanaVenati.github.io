@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Rachana Venati — AI Engineer working across information retrieval, RAG, multimodal learning, software engineering and reliable AI systems." />
   <title>Rachana Venati — AI Engineer</title>
+
   <style>
     :root{
       --bg:#f1f1ef;
@@ -17,8 +18,14 @@
       --max:1240px;
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    *{
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
     body{
       margin:0;
       background:var(--bg);
@@ -27,9 +34,19 @@
       line-height:1.5;
     }
 
-    a{color:inherit}
-    button,input{font:inherit}
-    img{max-width:100%;display:block}
+    a{
+      color:inherit;
+    }
+
+    button,
+    input{
+      font:inherit;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
 
     .wrap{
       width:min(calc(100% - 48px),var(--max));
@@ -43,6 +60,7 @@
       background:rgba(241,241,239,.94);
       backdrop-filter:blur(14px);
       border-bottom:0;
+      box-shadow:0 1px 0 rgba(17,17,17,.05);
     }
 
     .nav{
@@ -75,7 +93,11 @@
       letter-spacing:.11em;
     }
 
-    .navlinks a:hover{opacity:.55}
+    .navlinks a:hover{
+      opacity:.55;
+    }
+
+    /* ---------------- HERO ---------------- */
 
     .hero{
       padding:34px 0 80px;
@@ -98,7 +120,7 @@
 
     .hero-index{
       display:flex;
-      justify-content:space-between;
+      justify-content:flex-end;
       gap:20px;
       color:var(--muted);
       text-transform:uppercase;
@@ -142,6 +164,7 @@
       align-items:center;
       flex-wrap:wrap;
       gap:18px;
+      grid-column:2;
     }
 
     .hero-links a{
@@ -190,7 +213,7 @@
 
     .panel-top{
       display:flex;
-      justify-content:space-between;
+      justify-content:flex-end;
       gap:20px;
       text-transform:uppercase;
       font-size:.7rem;
@@ -217,7 +240,7 @@
 
     .panel-foot{
       display:flex;
-      justify-content:space-between;
+      justify-content:flex-start;
       color:#bdbdbd;
       text-transform:uppercase;
       font-size:.68rem;
@@ -226,18 +249,32 @@
       z-index:2;
     }
 
+    /* ---------------- SECTIONS ---------------- */
+
     section{
-      padding:105px 0;
-      border-bottom:0;
+      position:relative;
+      padding:88px 0;
+      border-bottom:0 !important;
       scroll-margin-top:80px;
     }
 
+    section + section::before{
+      content:"";
+      display:block;
+      width:min(96px,18vw);
+      height:1px;
+      background:rgba(17,17,17,.12);
+      margin:0 auto 54px;
+    }
+
     .section-head{
-      display:grid;
-      grid-template-columns:160px minmax(0,1fr);
-      gap:40px;
-      margin-bottom:58px;
-      align-items:start;
+      position:sticky;
+      top:72px;
+      z-index:15;
+      display:block;
+      background:var(--bg);
+      padding:10px 0 16px;
+      margin-bottom:38px;
     }
 
     .section-no{
@@ -245,77 +282,40 @@
       color:var(--muted);
       letter-spacing:.12em;
       text-transform:uppercase;
-      padding-top:10px;
     }
 
-    .section-title{
-      font-family:Georgia, "Times New Roman", serif;
-      font-weight:400;
-      font-size:clamp(3.5rem,7vw,7rem);
-      line-height:.88;
-      letter-spacing:-.06em;
-      margin:0;
-    }
+    /* ---------------- ABOUT ---------------- */
 
-    .section-title em{font-weight:400}
-
-    .about-layout{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:64px;
-      align-items:start;
-    }
-
-    .about-statement{
-      font-family:Georgia, "Times New Roman", serif;
-      font-size:clamp(2rem,4vw,4.1rem);
-      line-height:1.06;
-      letter-spacing:-.045em;
-      margin:0;
-    }
-
-    .about-side{
-      display:grid;
-      gap:30px;
-    }
-
-    .about-side p{
-      margin:0;
-      color:var(--muted);
-      font-size:1rem;
-      max-width:600px;
-    }
-
-    .about-mini{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      border-top:0;
-    }
-
-    .mini{
-      padding:16px 10px 0 0;
-    }
-
-    .mini + .mini{border-left:1px solid var(--line);padding-left:16px}
-    .mini strong{
+    .about-single{
       display:block;
-      margin-bottom:6px;
-      font-family:Georgia, "Times New Roman", serif;
-      font-size:1.25rem;
-      font-weight:400;
-    }
-    .mini span{
-      color:var(--muted);
-      font-size:.8rem;
+      max-width:920px;
     }
 
-    .experience-list{border-top:1px solid var(--ink)}
+    .about-single-copy{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:1.05rem;
+      line-height:1.8;
+      color:var(--ink);
+      letter-spacing:-.01em;
+    }
+
+    /* ---------------- EXPERIENCE ---------------- */
+
+    .experience-list{
+      border:0;
+    }
+
     .exp{
       display:grid;
       grid-template-columns:170px 1.15fr 1fr;
       gap:34px;
-      padding:28px 0;
-      border-bottom:0;
+      padding:24px 0;
+      border:0;
+    }
+
+    .exp + .exp{
+      margin-top:10px;
     }
 
     .exp-date{
@@ -332,6 +332,7 @@
       font-weight:400;
       line-height:1.1;
     }
+
     .exp-role p{
       margin:0;
       color:var(--muted);
@@ -342,27 +343,22 @@
       color:var(--muted);
       font-size:.9rem;
     }
-    .exp-desc ul{margin:0;padding-left:18px}
-    .exp-desc li+li{margin-top:6px}
 
-    .projects-intro{
-      display:grid;
-      grid-template-columns:1fr .8fr;
-      gap:50px;
-      align-items:end;
-      margin-bottom:36px;
-    }
-
-    .projects-intro p{
+    .exp-desc ul{
       margin:0;
-      color:var(--muted);
-      max-width:540px;
+      padding-left:18px;
     }
+
+    .exp-desc li + li{
+      margin-top:6px;
+    }
+
+    /* ---------------- PROJECTS ---------------- */
 
     .projects-grid{
       display:grid;
       grid-template-columns:1fr 1fr;
-      gap:1px;
+      gap:18px;
       background:transparent;
       border:0;
     }
@@ -375,6 +371,8 @@
       flex-direction:column;
       justify-content:space-between;
       transition:background .2s ease,color .2s ease;
+      border:0;
+      box-shadow:none;
     }
 
     .project:hover{
@@ -383,9 +381,17 @@
     }
 
     .project:hover .project-copy,
-    .project:hover .project-tags{color:#bbb}
-    .project:hover .project-tags span{border-color:#555}
-    .project:hover .project-link{border-color:#fff}
+    .project:hover .project-tags{
+      color:#bbb;
+    }
+
+    .project:hover .project-tags span{
+      border-color:#555;
+    }
+
+    .project:hover .project-link{
+      border-color:#fff;
+    }
 
     .project.feature{
       grid-column:span 2;
@@ -393,6 +399,11 @@
       display:grid;
       grid-template-columns:1.1fr .9fr;
       gap:50px;
+    }
+
+    .project-last{
+      grid-column:span 2;
+      min-height:320px;
     }
 
     .project-id{
@@ -435,11 +446,11 @@
       letter-spacing:.06em;
     }
 
-
     details{
-      margin-top:24px;
-      border-top:0;
-      border-bottom:0;
+      border:0;
+      background:rgba(17,17,17,.025);
+      padding:0 14px;
+      margin-top:20px;
     }
 
     summary{
@@ -456,9 +467,20 @@
       font-weight:700;
     }
 
-    summary::-webkit-details-marker{display:none}
-    summary::after{content:"+";font-family:Georgia,"Times New Roman",serif;font-size:1.3rem;font-weight:400}
-    details[open] summary::after{content:"−"}
+    summary::-webkit-details-marker{
+      display:none;
+    }
+
+    summary::after{
+      content:"+";
+      font-family:Georgia,"Times New Roman",serif;
+      font-size:1.3rem;
+      font-weight:400;
+    }
+
+    details[open] summary::after{
+      content:"−";
+    }
 
     .detail-body{
       padding:2px 0 18px;
@@ -476,9 +498,17 @@
       font-weight:700;
     }
 
-    .project:hover .detail-body p{color:#bbb}
-    .project:hover .detail-body strong{color:#fff}
-    .project:hover details{border-color:#505050}
+    .project:hover .detail-body p{
+      color:#bbb;
+    }
+
+    .project:hover .detail-body strong{
+      color:#fff;
+    }
+
+    .project:hover details{
+      border-color:#505050;
+    }
 
     .project-link{
       display:inline-block;
@@ -503,6 +533,7 @@
       padding:18px 0;
       border-bottom:0;
     }
+
     .metric strong{
       font-family:Georgia, "Times New Roman", serif;
       font-size:2rem;
@@ -510,6 +541,7 @@
       display:block;
       margin-bottom:3px;
     }
+
     .metric span{
       color:var(--muted);
       font-size:.78rem;
@@ -517,209 +549,7 @@
       letter-spacing:.08em;
     }
 
-    .knowledge-layout{
-      display:grid;
-      grid-template-columns:310px 1fr;
-      gap:50px;
-      align-items:start;
-    }
-
-    .knowledge-copy{
-      position:sticky;
-      top:100px;
-    }
-
-    .knowledge-copy p{
-      color:var(--muted);
-      margin:18px 0 24px;
-    }
-
-    .skill-search{
-      width:100%;
-      border:0;
-      border-bottom:0;
-      background:transparent;
-      padding:10px 0;
-      outline:none;
-      color:var(--ink);
-    }
-
-    .skill-filters{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:14px;
-    }
-
-    .skill-filter{
-      border:0;
-      background:transparent;
-      padding:6px 9px;
-      cursor:pointer;
-      font-size:.67rem;
-      text-transform:uppercase;
-      letter-spacing:.07em;
-    }
-
-    .skill-filter.active,
-    .skill-filter:hover{
-      background:var(--black);
-      color:#fff;
-      border-color:var(--black);
-    }
-
-    .skills{
-      border-top:0;
-    }
-
-    .skill{
-      display:grid;
-      grid-template-columns:50px 1fr auto;
-      gap:18px;
-      padding:14px 0;
-      border-bottom:0;
-      align-items:center;
-    }
-
-    .skill.hidden{display:none}
-
-    .skill-num{
-      color:var(--muted);
-      font-size:.7rem;
-    }
-
-    .skill strong{
-      font-family:Georgia, "Times New Roman", serif;
-      font-size:1.18rem;
-      font-weight:400;
-    }
-
-    .skill span{
-      color:var(--muted);
-      font-size:.67rem;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-    }
-
-    .edu-list,
-    .cert-list{
-      border-top:0;
-    }
-
-    .edu,
-    .cert{
-      display:grid;
-      grid-template-columns:180px 1fr auto;
-      gap:32px;
-      border-bottom:0;
-      padding:27px 0;
-      align-items:start;
-    }
-
-    .edu-date,.cert-date{
-      color:var(--muted);
-      font-size:.78rem;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-    }
-
-    .edu h3,.cert h3{
-      font-family:Georgia, "Times New Roman", serif;
-      font-size:1.55rem;
-      font-weight:400;
-      margin:0 0 4px;
-    }
-
-    .edu p,.cert p{
-      margin:0;
-      color:var(--muted);
-      font-size:.88rem;
-    }
-
-    .edu-grade{
-      font-family:Georgia, "Times New Roman", serif;
-      font-size:1.2rem;
-    }
-
-    .contact{
-      padding-bottom:80px;
-    }
-
-    .contact-layout{
-      display:grid;
-      grid-template-columns:1.25fr .75fr;
-      gap:70px;
-      align-items:end;
-    }
-
-    .contact-title{
-      font-family:Georgia, "Times New Roman", serif;
-      font-weight:400;
-      font-size:clamp(4rem,9vw,9rem);
-      line-height:.83;
-      letter-spacing:-.07em;
-      margin:0;
-    }
-
-    .contact-title em{
-      display:block;
-      margin-left:10vw;
-    }
-
-    .contact-side p{
-      color:var(--muted);
-      margin:0 0 28px;
-    }
-
-    .contact-links{
-      border-top:0;
-    }
-
-    .contact-links a{
-      display:flex;
-      justify-content:space-between;
-      text-decoration:none;
-      padding:13px 0;
-      border-bottom:0;
-      text-transform:uppercase;
-      font-size:.72rem;
-      letter-spacing:.08em;
-    }
-
-    footer{
-      padding:24px 0 32px;
-      font-size:.75rem;
-      text-transform:uppercase;
-      letter-spacing:.09em;
-      color:var(--muted);
-    }
-
-    @media(max-width:900px){
-      .hero-grid{grid-template-columns:1fr;min-height:0}
-      .hero-panel{min-height:480px}
-      .section-head{grid-template-columns:1fr;gap:12px}
-      .about-layout,.projects-intro,.knowledge-layout,.contact-layout{grid-template-columns:1fr}
-      .knowledge-copy{position:static}
-      .exp{grid-template-columns:1fr;gap:10px}
-      .projects-grid{grid-template-columns:1fr}
-      .project.feature{grid-column:span 1;grid-template-columns:1fr}
-      .edu,.cert{grid-template-columns:1fr;gap:8px}
-      .edu-grade{margin-top:5px}
-    }
-
-    @media(max-width:650px){
-      .wrap{width:min(calc(100% - 28px),var(--max))}
-      .navlinks a{display:none}
-      .hero{padding-top:16px}
-      .hero-title{font-size:clamp(4.2rem,21vw,7rem)}
-      .hero-title span{margin-left:0}
-      .hero-bottom{grid-template-columns:1fr}
-      .hero-links{justify-content:flex-start}
-      section{padding:76px 0}
-      .about-mini{grid-template-columns:1fr}
-      .mini+.mini{border-left:0;border-top:0;padding-left:0;padding-top:16px;margin-top:16px}
-      .project{min-height:380px}
-    }
+    /* ---------------- SKILLS ---------------- */
 
     .skill-clusters{
       display:grid;
@@ -729,7 +559,7 @@
 
     .skill-cluster-group{
       border-top:0;
-      padding-top:18px;
+      padding-top:0;
     }
 
     .skill-cluster-group h3{
@@ -752,7 +582,7 @@
       align-items:center;
       min-height:34px;
       padding:7px 11px;
-      border:1px solid rgba(17,17,17,.12);
+      border:1px solid rgba(17,17,17,.08);
       font-size:.76rem;
       line-height:1;
       letter-spacing:.015em;
@@ -795,155 +625,179 @@
       color:#3e3a2a;
     }
 
-    @media(max-width:800px){
-      .skill-clusters{
-        grid-template-columns:1fr;
-        gap:34px;
-      }
-    }
+    /* ---------------- EDUCATION ---------------- */
 
-  
-    .topbar{
-      border-bottom:0 !important;
-      box-shadow:0 1px 0 rgba(17,17,17,.05);
-    }
-
-    section{
-      border-bottom:0 !important;
-    }
-
-    .section-head{
-      margin-bottom:46px;
-    }
-
-    .about-single{
-      display:block;
-      max-width:920px;
-    }
-
-    .about-single-copy{
-      margin:0;
-      font-family:Arial, Helvetica, sans-serif;
-      font-size:1.05rem;
-      line-height:1.8;
-      color:var(--ink);
-      letter-spacing:-.01em;
-    }
-
-    .experience-list,
     .edu-list,
-    .cert-list,
-    .contact-links{
-      border:0 !important;
+    .cert-list{
+      border:0;
     }
 
-    .exp,
     .edu,
     .cert{
-      border:0 !important;
+      display:grid;
+      grid-template-columns:180px 1fr auto;
+      gap:32px;
+      border:0;
       padding:24px 0;
+      align-items:start;
     }
 
-    .exp + .exp,
     .edu + .edu,
     .cert + .cert{
       margin-top:10px;
     }
 
-    .projects-grid{
-      background:transparent !important;
-      border:0 !important;
-      gap:18px;
+    .edu-date,
+    .cert-date{
+      color:var(--muted);
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
     }
 
-    .project{
-      border:0 !important;
-      background:var(--paper);
-      box-shadow:none;
+    .edu h3,
+    .cert h3{
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:1.55rem;
+      font-weight:400;
+      margin:0 0 4px;
     }
 
-    .project.feature{
-      margin-bottom:0;
+    .edu p,
+    .cert p{
+      margin:0;
+      color:var(--muted);
+      font-size:.88rem;
     }
 
-    .project-last{
-      grid-column:span 2;
-      min-height:320px;
+    .edu-grade{
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:1.2rem;
     }
 
-    details{
-      border:0 !important;
-      background:rgba(17,17,17,.025);
-      padding:0 14px;
-      margin-top:20px;
+    .cert-link{
+      text-decoration:none;
     }
 
-    .skill-cluster-group{
-      border-top:0 !important;
-      padding-top:0;
-    }
+    /* ---------------- CONTACT ---------------- */
 
-    .skill-tile{
-      border:1px solid rgba(17,17,17,.08) !important;
+    .contact{
+      padding-bottom:80px;
     }
 
     .compact-contact-row{
-      border-top:0 !important;
+      border-top:0;
       padding-top:0;
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px 28px;
     }
+
+    .compact-contact-row a{
+      text-decoration:none;
+      text-transform:uppercase;
+      font-size:.72rem;
+      letter-spacing:.08em;
+      font-weight:700;
+    }
+
+    .compact-contact-row a:hover{
+      opacity:.55;
+    }
+
+    /* ---------------- FOOTER ---------------- */
 
     footer{
-      border-top:0 !important;
+      padding:24px 0 32px;
+      font-size:.75rem;
+      text-transform:uppercase;
+      letter-spacing:.09em;
+      color:var(--muted);
+      border-top:0;
     }
+
+    /* ---------------- RESPONSIVE ---------------- */
 
     @media(max-width:900px){
-      .project-last{grid-column:span 1}
-    }
 
-  
-    /* Section rhythm and sticky headings */
-    section{
-      position:relative;
-      padding:88px 0;
-    }
+      .hero-grid{
+        grid-template-columns:1fr;
+        min-height:0;
+      }
 
-    section + section::before{
-      content:"";
-      display:block;
-      width:min(96px,18vw);
-      height:1px;
-      background:rgba(17,17,17,.12);
-      margin:0 auto 54px;
-    }
+      .hero-panel{
+        min-height:480px;
+      }
 
-    .section-head{
-      position:sticky;
-      top:92px;
-      z-index:6;
-      align-self:start;
-      background:color-mix(in srgb, var(--bg) 94%, transparent);
-      backdrop-filter:blur(8px);
-      padding:8px 0 14px;
-      margin-bottom:38px;
-    }
+      .exp{
+        grid-template-columns:1fr;
+        gap:10px;
+      }
 
-    .section-title{
-      font-size:clamp(2.4rem,4.8vw,4.8rem);
-      line-height:.94;
-      letter-spacing:-.045em;
-    }
+      .projects-grid{
+        grid-template-columns:1fr;
+      }
 
-    .section-no{
-      padding-top:7px;
-    }
+      .project.feature{
+        grid-column:span 1;
+        grid-template-columns:1fr;
+      }
 
-    @media(max-width:900px){
+      .project-last{
+        grid-column:span 1;
+      }
+
+      .edu,
+      .cert{
+        grid-template-columns:1fr;
+        gap:8px;
+      }
+
+      .edu-grade{
+        margin-top:5px;
+      }
+
+      .skill-clusters{
+        grid-template-columns:1fr;
+        gap:34px;
+      }
+
       .section-head{
-        top:78px;
+        top:72px;
       }
     }
 
     @media(max-width:650px){
+
+      .wrap{
+        width:min(calc(100% - 28px),var(--max));
+      }
+
+      .navlinks a{
+        display:none;
+      }
+
+      .hero{
+        padding-top:16px;
+      }
+
+      .hero-title{
+        font-size:clamp(4.2rem,21vw,7rem);
+      }
+
+      .hero-title span{
+        margin-left:0;
+      }
+
+      .hero-bottom{
+        grid-template-columns:1fr;
+      }
+
+      .hero-links{
+        justify-content:flex-start;
+        grid-column:1;
+      }
+
       section{
         padding:66px 0;
       }
@@ -953,45 +807,24 @@
       }
 
       .section-head{
-        top:70px;
-        padding-top:6px;
+        top:68px;
+        padding:8px 0 12px;
       }
 
-      .section-title{
-        font-size:clamp(2.1rem,10vw,3.4rem);
+      .project{
+        min-height:380px;
       }
     }
-
-  
-    /* Fix sticky section heading gap under navigation */
-    .section-head{
-      top:72px !important;
-      padding:10px 0 16px !important;
-      background:var(--bg) !important;
-      backdrop-filter:none !important;
-      z-index:15 !important;
-    }
-
-    @media(max-width:900px){
-      .section-head{
-        top:72px !important;
-      }
-    }
-
-    @media(max-width:650px){
-      .section-head{
-        top:68px !important;
-        padding:8px 0 12px !important;
-      }
-    }
-
   </style>
 </head>
+
 <body>
 
   <header class="topbar">
     <div class="wrap nav">
+
       <a href="#top" class="monogram">RV</a>
+
       <nav class="navlinks">
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
@@ -1000,16 +833,19 @@
         <a href="#education">Education</a>
         <a href="#contact">Contact</a>
       </nav>
+
     </div>
   </header>
 
   <main id="top">
 
+    <!-- HERO -->
     <section class="hero">
       <div class="wrap hero-grid">
+
         <div class="hero-left">
+
           <div class="hero-index">
-            <span>Portfolio / 2026</span>
             <span>Germany</span>
           </div>
 
@@ -1019,118 +855,174 @@
           </h1>
 
           <div class="hero-bottom">
-            
             <div class="hero-links">
               <a href="#projects">View projects</a>
               <a href="assets/Rachana_Venati_Resume.pdf" target="_blank">Résumé</a>
             </div>
           </div>
+
         </div>
 
         <aside class="hero-panel" aria-label="Portfolio focus">
+
           <div class="panel-top">
-            <span>AI Engineering</span>
             <span>01</span>
           </div>
+
           <div class="panel-word">
             AI Engineer
             <em>LLMs · RAG · IR</em>
           </div>
+
           <div class="panel-foot">
             <span>RAG · NLP · IR</span>
-            <span>2026</span>
           </div>
+
         </aside>
+
       </div>
     </section>
 
+
+    <!-- ABOUT -->
     <section id="about">
       <div class="wrap">
+
         <div class="section-head">
           <div class="section-no">01 / About</div>
-          <h2 class="section-title">A focused approach to <em>applied AI.</em></h2>
         </div>
 
-        <div class="about-layout about-single">
+        <div class="about-single">
           <p class="about-single-copy">
             I started in software engineering and gradually moved deeper into AI through my M.Sc. in Computer Science for Digital Media at Bauhaus-Universität Weimar. Today I work across LLMs, Retrieval-Augmented Generation, information retrieval, agentic AI and multimodal learning, with a particular interest in the engineering around models: retrieval quality, ranking, grounding, evaluation, orchestration, APIs and deployment. My focus is on turning strong research ideas into AI systems that are clear, maintainable and useful in production.
           </p>
         </div>
+
       </div>
     </section>
 
+
+    <!-- EXPERIENCE -->
     <section id="experience">
       <div class="wrap">
+
         <div class="section-head">
           <div class="section-no">02 / Experience</div>
-          <h2 class="section-title">Professional <em>experience.</em></h2>
         </div>
 
         <div class="experience-list">
+
           <article class="exp">
-            <div class="exp-date">Dec 2024 — Present</div>
+
+            <div class="exp-date">
+              Dec 2024 — Present
+            </div>
+
             <div class="exp-role">
               <h3>AI engineer</h3>
               <p>Kontacts IT-Solutions GmbH · Potsdam, Germany · work study</p>
             </div>
+
             <div class="exp-desc">
               <ul>
-                <li>Developed and deployed a RAG system on Netcup and Google Cloud using hybrid retrieval, reranking and agentic workflows.</li>
-                <li>Compared late chunking, semantic chunking, embeddings and retrieval strategies through chatbot proofs of concept.</li>
-                <li>Automated operational workflows with n8n and Activepieces.</li>
+                <li>
+                  Developed and deployed a RAG system on Netcup and Google Cloud using hybrid retrieval, reranking and agentic workflows.
+                </li>
+                <li>
+                  Compared late chunking, semantic chunking, embeddings and retrieval strategies through chatbot proofs of concept.
+                </li>
+                <li>
+                  Automated operational workflows with n8n and Activepieces.
+                </li>
               </ul>
             </div>
+
           </article>
 
+
           <article class="exp">
-            <div class="exp-date">Jul 2020 — Sep 2023</div>
+
+            <div class="exp-date">
+              Jul 2020 — Sep 2023
+            </div>
+
             <div class="exp-role">
               <h3>Software Engineer II</h3>
               <p>HCL Software · India</p>
             </div>
+
             <div class="exp-desc">
               <ul>
-                <li>Resolved 250+ critical defects across iOS, Android and web versions of Volt MX.</li>
-                <li>Supported push-notification systems using GCM, FCM and APNs.</li>
-                <li>Delivered technical enablement and knowledge-transfer sessions for newly onboarded teams.</li>
+                <li>
+                  Resolved 250+ critical defects across iOS, Android and web versions of Volt MX.
+                </li>
+                <li>
+                  Supported push-notification systems using GCM, FCM and APNs.
+                </li>
+                <li>
+                  Delivered technical enablement and knowledge-transfer sessions for newly onboarded teams.
+                </li>
               </ul>
             </div>
+
           </article>
 
+
           <article class="exp">
-            <div class="exp-date">Sep 2018 — Jun 2020</div>
+
+            <div class="exp-date">
+              Sep 2018 — Jun 2020
+            </div>
+
             <div class="exp-role">
               <h3>Associate Software Engineer</h3>
               <p>Kony / Temenos · India</p>
             </div>
+
             <div class="exp-desc">
               <ul>
-                <li>Troubleshot Android product issues, completing 80% of cases within SLA requirements.</li>
-                <li>Published technical articles and proofs of concept for product features and native Android integrations.</li>
+                <li>
+                  Troubleshot Android product issues, completing 80% of cases within SLA requirements.
+                </li>
+                <li>
+                  Published technical articles and proofs of concept for product features and native Android integrations.
+                </li>
               </ul>
             </div>
+
           </article>
+
         </div>
       </div>
     </section>
 
+
+    <!-- PROJECTS -->
     <section id="projects">
       <div class="wrap">
+
         <div class="section-head">
           <div class="section-no">03 / Projects</div>
-          <h2 class="section-title">Selected <em>work.</em></h2>
         </div>
-<div class="projects-grid">
+
+        <div class="projects-grid">
 
           <article class="project feature">
+
             <div>
-              <div class="project-id">Featured / Master Thesis</div>
-              <h3>Experimental Evaluation of Axioms for Health Information Retrieval</h3>
+
+              <div class="project-id">
+                Featured / Master Thesis
+              </div>
+
+              <h3>
+                Experimental Evaluation of Axioms for Health Information Retrieval
+              </h3>
+
               <p class="project-copy">
-                Research on explainable reranking for health search. I designed preference axioms around medical terminology,
-                demographics, recency and evidence level, then used them to rerank search results and evaluate how well the
-                resulting order aligned with relevance judgments.
+                Research on explainable reranking for health search. I designed preference axioms around medical terminology, demographics, recency and evidence level, then used them to rerank search results and evaluate how well the resulting order aligned with relevance judgments.
               </p>
+
               <div class="project-tags">
                 <span>Information Retrieval</span>
                 <span>MeSH</span>
@@ -1138,159 +1030,403 @@
                 <span>Explainability</span>
                 <span>Evaluation</span>
               </div>
+
             </div>
+
             <div class="metrics">
-              <div class="metric"><strong>0.492 → 0.524</strong><span>TREC 2021 nDCG@5</span></div>
-              <div class="metric"><strong>0.119 → 0.125</strong><span>CLEF 2017 nDCG@5</span></div>
-              <div class="metric"><strong>~90%</strong><span>Axiom / expert alignment</span></div>
+
+              <div class="metric">
+                <strong>0.492 → 0.524</strong>
+                <span>TREC 2021 nDCG@5</span>
+              </div>
+
+              <div class="metric">
+                <strong>0.119 → 0.125</strong>
+                <span>CLEF 2017 nDCG@5</span>
+              </div>
+
+              <div class="metric">
+                <strong>~90%</strong>
+                <span>Axiom / expert alignment</span>
+              </div>
+
             </div>
+
           </article>
 
+
           <article class="project project-detailed">
+
             <div>
-              <div class="project-id">01 / Retrieval-Augmented Generation</div>
+
+              <div class="project-id">
+                01 / Retrieval-Augmented Generation
+              </div>
+
               <h3>BUW at TREC 2024 — RAG</h3>
+
               <p class="project-copy">
                 A complete retrieval-and-generation system for the TREC 2024 RAG track over the MS MARCO Segment v2.1 collection.
               </p>
 
               <details>
+
                 <summary>How the system works</summary>
+
                 <div class="detail-body">
-                  <p><strong>Problem.</strong> Retrieve relevant evidence for 301 TREC RAG queries and generate grounded answers with traceable citations.</p>
-                  <p><strong>Retrieval.</strong> Pyserini/Lucene BM25 first retrieves the top 100 segments. Those candidates are then indexed in Weaviate and refined to the top 20 with MiniLM embeddings using either hybrid search or semantic Near Text search.</p>
-                  <p><strong>Generation.</strong> Llama 3 receives the original query plus the top retrieved segments. Prompt variants were tested to reduce unsupported content and make answers more concise.</p>
-                  <p><strong>Citations.</strong> Instead of relying on the LLM to place citations correctly, generated sentences are embedded and matched back to retrieved segments with cosine similarity, then supporting references are attached in post-processing.</p>
-                  <p><strong>Evaluation.</strong> The repository reports 0.752 precision and 0.860 average NDCG for the dense-on-sparse retrieval run using adapted TREC 2023 judgments as a development proxy.</p>
+
+                  <p>
+                    <strong>Problem.</strong>
+                    Retrieve relevant evidence for 301 TREC RAG queries and generate grounded answers with traceable citations.
+                  </p>
+
+                  <p>
+                    <strong>Retrieval.</strong>
+                    Pyserini/Lucene BM25 first retrieves the top 100 segments. Those candidates are then indexed in Weaviate and refined to the top 20 with MiniLM embeddings using either hybrid search or semantic Near Text search.
+                  </p>
+
+                  <p>
+                    <strong>Generation.</strong>
+                    Llama 3 receives the original query plus the top retrieved segments. Prompt variants were tested to reduce unsupported content and make answers more concise.
+                  </p>
+
+                  <p>
+                    <strong>Citations.</strong>
+                    Instead of relying on the LLM to place citations correctly, generated sentences are embedded and matched back to retrieved segments with cosine similarity, then supporting references are attached in post-processing.
+                  </p>
+
+                  <p>
+                    <strong>Evaluation.</strong>
+                    The repository reports 0.752 precision and 0.860 average NDCG for the dense-on-sparse retrieval run using adapted TREC 2023 judgments as a development proxy.
+                  </p>
+
                 </div>
+
               </details>
 
               <div class="project-tags">
-                <span>Pyserini</span><span>BM25</span><span>Weaviate</span><span>MiniLM</span><span>Llama 3</span><span>FastAPI</span>
+                <span>Pyserini</span>
+                <span>BM25</span>
+                <span>Weaviate</span>
+                <span>MiniLM</span>
+                <span>Llama 3</span>
+                <span>FastAPI</span>
               </div>
+
             </div>
-            <a class="project-link" href="https://github.com/RachanaVenati/RAG-TREC2024" target="_blank">View repository</a>
+
+            <a
+              class="project-link"
+              href="https://github.com/RachanaVenati/RAG-TREC2024"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View repository
+            </a>
+
           </article>
 
+
           <article class="project project-detailed">
+
             <div>
-              <div class="project-id">02 / Multimodal Machine Learning</div>
+
+              <div class="project-id">
+                02 / Multimodal Machine Learning
+              </div>
+
               <h3>Nutri-Score Multimodal Sentiment Analysis</h3>
+
               <p class="project-copy">
                 A three-class sentiment system for Instagram posts that predicts Positive, Neutral or Negative using both text and image information.
               </p>
 
               <details>
+
                 <summary>How the system works</summary>
+
                 <div class="detail-body">
-                  <p><strong>Experiments.</strong> The project compares text-only, image-only, CLIP-based and image-text fusion approaches rather than treating multimodal learning as a single model choice.</p>
-                  <p><strong>Text branch.</strong> A RoBERTa sentiment model is fine-tuned on Instagram post text.</p>
-                  <p><strong>Image branch.</strong> A Vision Transformer processes post images, while a separate CLIP experiment explores joint visual-language representations.</p>
-                  <p><strong>Fusion.</strong> Learned text and image representations are combined in a dedicated fusion model for final sentiment classification.</p>
-                  <p><strong>Serving & reproducibility.</strong> The repository is structured as an installable Python package with CLI commands for splitting data, training each branch, evaluating predictions, and launching a FastAPI endpoint that accepts post text plus an image.</p>
+
+                  <p>
+                    <strong>Experiments.</strong>
+                    The project compares text-only, image-only, CLIP-based and image-text fusion approaches rather than treating multimodal learning as a single model choice.
+                  </p>
+
+                  <p>
+                    <strong>Text branch.</strong>
+                    A RoBERTa sentiment model is fine-tuned on Instagram post text.
+                  </p>
+
+                  <p>
+                    <strong>Image branch.</strong>
+                    A Vision Transformer processes post images, while a separate CLIP experiment explores joint visual-language representations.
+                  </p>
+
+                  <p>
+                    <strong>Fusion.</strong>
+                    Learned text and image representations are combined in a dedicated fusion model for final sentiment classification.
+                  </p>
+
+                  <p>
+                    <strong>Serving & reproducibility.</strong>
+                    The repository is structured as an installable Python package with CLI commands for splitting data, training each branch, evaluating predictions, and launching a FastAPI endpoint that accepts post text plus an image.
+                  </p>
+
                 </div>
+
               </details>
 
               <div class="project-tags">
-                <span>PyTorch</span><span>RoBERTa</span><span>Vision Transformer</span><span>CLIP</span><span>FastAPI</span><span>Hugging Face</span>
+                <span>PyTorch</span>
+                <span>RoBERTa</span>
+                <span>Vision Transformer</span>
+                <span>CLIP</span>
+                <span>FastAPI</span>
+                <span>Hugging Face</span>
               </div>
+
             </div>
-            <a class="project-link" href="https://github.com/RachanaVenati/Nutriscore-" target="_blank">View repository</a>
+
+            <a
+              class="project-link"
+              href="https://github.com/RachanaVenati/Nutriscore-"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View repository
+            </a>
+
           </article>
 
+
           <article class="project project-detailed">
+
             <div>
-              <div class="project-id">03 / Interactive Visualization</div>
+
+              <div class="project-id">
+                03 / Interactive Visualization
+              </div>
+
               <h3>Music & Socioeconomic Data Visualization</h3>
+
               <p class="project-copy">
                 An interactive exploration of how characteristics of charting songs relate to socioeconomic conditions across countries.
               </p>
 
               <details>
+
                 <summary>How the system works</summary>
+
                 <div class="detail-body">
-                  <p><strong>Research question.</strong> The project asks how music parameters such as tempo and energy correlate with socioeconomic conditions.</p>
-                  <p><strong>Box plots.</strong> Users can select a musical feature and inspect its distribution through minimum, maximum, median and quartiles.</p>
-                  <p><strong>Calendar heatmap.</strong> The selected music parameter is reflected in a temporal view to reveal patterns over time and compare them with external factors.</p>
-                  <p><strong>Geo heatmap.</strong> Countries can be selected directly on the map; that selection updates the related calendar and box-plot views.</p>
-                  <p><strong>Interaction.</strong> Coordinated views and a global reset allow users to move between country-level and global analysis without losing context.</p>
+
+                  <p>
+                    <strong>Research question.</strong>
+                    The project asks how music parameters such as tempo and energy correlate with socioeconomic conditions.
+                  </p>
+
+                  <p>
+                    <strong>Box plots.</strong>
+                    Users can select a musical feature and inspect its distribution through minimum, maximum, median and quartiles.
+                  </p>
+
+                  <p>
+                    <strong>Calendar heatmap.</strong>
+                    The selected music parameter is reflected in a temporal view to reveal patterns over time and compare them with external factors.
+                  </p>
+
+                  <p>
+                    <strong>Geo heatmap.</strong>
+                    Countries can be selected directly on the map; that selection updates the related calendar and box-plot views.
+                  </p>
+
+                  <p>
+                    <strong>Interaction.</strong>
+                    Coordinated views and a global reset allow users to move between country-level and global analysis without losing context.
+                  </p>
+
                 </div>
+
               </details>
 
               <div class="project-tags">
-                <span>JavaScript</span><span>Interactive Visualization</span><span>Box Plot</span><span>Calendar Heatmap</span><span>Geo Heatmap</span>
+                <span>JavaScript</span>
+                <span>Interactive Visualization</span>
+                <span>Box Plot</span>
+                <span>Calendar Heatmap</span>
+                <span>Geo Heatmap</span>
               </div>
+
             </div>
-            <a class="project-link" href="https://github.com/RachanaVenati/Visualization_music" target="_blank">View repository</a>
+
+            <a
+              class="project-link"
+              href="https://github.com/RachanaVenati/Visualization_music"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View repository
+            </a>
+
           </article>
 
+
           <article class="project project-detailed">
+
             <div>
-              <div class="project-id">04 / Classical Computer Vision</div>
+
+              <div class="project-id">
+                04 / Classical Computer Vision
+              </div>
+
               <h3>Crack Detection</h3>
+
               <p class="project-copy">
                 A MATLAB pipeline for detecting and structurally analysing cracks in wall-surface images without relying on deep learning.
               </p>
 
               <details>
+
                 <summary>How the system works</summary>
+
                 <div class="detail-body">
-                  <p><strong>Pre-processing.</strong> Images are prepared, split and augmented to improve robustness across different surface conditions.</p>
-                  <p><strong>Segmentation.</strong> Intensity thresholding and morphological operations create binary crack masks, followed by connected-component analysis to remove noise and isolate crack regions.</p>
-                  <p><strong>Classification.</strong> Handcrafted region-level features are extracted and used with an SVM to distinguish crack from non-crack regions.</p>
-                  <p><strong>Structural analytics.</strong> Segmented cracks are thinned into skeletons so the pipeline can estimate crack length and inspect branching behaviour.</p>
-                  <p><strong>Evaluation.</strong> The code includes segmentation evaluation such as Intersection-over-Union and is designed as a lightweight classical alternative for limited-data or limited-compute settings.</p>
+
+                  <p>
+                    <strong>Pre-processing.</strong>
+                    Images are prepared, split and augmented to improve robustness across different surface conditions.
+                  </p>
+
+                  <p>
+                    <strong>Segmentation.</strong>
+                    Intensity thresholding and morphological operations create binary crack masks, followed by connected-component analysis to remove noise and isolate crack regions.
+                  </p>
+
+                  <p>
+                    <strong>Classification.</strong>
+                    Handcrafted region-level features are extracted and used with an SVM to distinguish crack from non-crack regions.
+                  </p>
+
+                  <p>
+                    <strong>Structural analytics.</strong>
+                    Segmented cracks are thinned into skeletons so the pipeline can estimate crack length and inspect branching behaviour.
+                  </p>
+
+                  <p>
+                    <strong>Evaluation.</strong>
+                    The code includes segmentation evaluation such as Intersection-over-Union and is designed as a lightweight classical alternative for limited-data or limited-compute settings.
+                  </p>
+
                 </div>
+
               </details>
 
               <div class="project-tags">
-                <span>MATLAB</span><span>Thresholding</span><span>Morphology</span><span>SVM</span><span>Skeletonization</span><span>IoU</span>
+                <span>MATLAB</span>
+                <span>Thresholding</span>
+                <span>Morphology</span>
+                <span>SVM</span>
+                <span>Skeletonization</span>
+                <span>IoU</span>
               </div>
+
             </div>
-            <a class="project-link" href="https://github.com/RachanaVenati/CrackDetection" target="_blank">View repository</a>
+
+            <a
+              class="project-link"
+              href="https://github.com/RachanaVenati/CrackDetection"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View repository
+            </a>
+
           </article>
 
+
           <article class="project project-detailed project-last">
+
             <div>
-              <div class="project-id">05 / VR & Multiplayer Systems</div>
+
+              <div class="project-id">
+                05 / VR & Multiplayer Systems
+              </div>
+
               <h3>Multiplayer Minigolf in VR</h3>
+
               <p class="project-copy">
                 A multi-user virtual-reality minigolf game built in Unity 3D with synchronized gameplay across players.
               </p>
 
               <details>
+
                 <summary>How the system works</summary>
+
                 <div class="detail-body">
-                  <p><strong>Environment.</strong> Game objects and scenes were designed and assembled directly in Unity 3D for a VR minigolf experience.</p>
-                  <p><strong>Interaction.</strong> Physics, ray-casting and navigation techniques drive ball behaviour and player interaction with the scene.</p>
-                  <p><strong>Game logic.</strong> Multiplayer scoring logic tracks the state of the game and presents scores to participants.</p>
-                  <p><strong>Networking.</strong> Network synchronization keeps scenes and scores consistent across multiple users so players share the same game state.</p>
+
+                  <p>
+                    <strong>Environment.</strong>
+                    Game objects and scenes were designed and assembled directly in Unity 3D for a VR minigolf experience.
+                  </p>
+
+                  <p>
+                    <strong>Interaction.</strong>
+                    Physics, ray-casting and navigation techniques drive ball behaviour and player interaction with the scene.
+                  </p>
+
+                  <p>
+                    <strong>Game logic.</strong>
+                    Multiplayer scoring logic tracks the state of the game and presents scores to participants.
+                  </p>
+
+                  <p>
+                    <strong>Networking.</strong>
+                    Network synchronization keeps scenes and scores consistent across multiple users so players share the same game state.
+                  </p>
+
                 </div>
+
               </details>
 
               <div class="project-tags">
-                <span>Unity 3D</span><span>C#</span><span>VR</span><span>Physics</span><span>Ray Casting</span><span>Networking</span>
+                <span>Unity 3D</span>
+                <span>C#</span>
+                <span>VR</span>
+                <span>Physics</span>
+                <span>Ray Casting</span>
+                <span>Networking</span>
               </div>
+
             </div>
-            <a class="project-link" href="https://github.com/RachanaVenati/minigolf-VR" target="_blank">View repository</a>
+
+            <a
+              class="project-link"
+              href="https://github.com/RachanaVenati/minigolf-VR"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View repository
+            </a>
+
           </article>
 
         </div>
       </div>
     </section>
 
-    
-    
+
+    <!-- SKILLS -->
     <section id="skills">
       <div class="wrap">
+
         <div class="section-head">
           <div class="section-no">04 / Skills</div>
-          <h2 class="section-title">Technical <em>skills.</em></h2>
         </div>
 
         <div class="skill-clusters">
+
           <div class="skill-cluster-group">
+
             <h3>AI & Retrieval</h3>
+
             <div class="skill-tile-wrap">
               <span class="skill-tile ai">RAG</span>
               <span class="skill-tile ai">Agentic AI</span>
@@ -1307,10 +1443,14 @@
               <span class="skill-tile ai">Weaviate</span>
               <span class="skill-tile ai">MeSH</span>
             </div>
+
           </div>
 
+
           <div class="skill-cluster-group">
+
             <h3>Machine Learning</h3>
+
             <div class="skill-tile-wrap">
               <span class="skill-tile ml">PyTorch</span>
               <span class="skill-tile ml">Scikit-learn</span>
@@ -1321,10 +1461,14 @@
               <span class="skill-tile ml">SVM</span>
               <span class="skill-tile ml">Image Analysis</span>
             </div>
+
           </div>
 
+
           <div class="skill-cluster-group">
+
             <h3>Software Engineering</h3>
+
             <div class="skill-tile-wrap">
               <span class="skill-tile software">Python</span>
               <span class="skill-tile software">JavaScript</span>
@@ -1337,10 +1481,14 @@
               <span class="skill-tile software">Pytest</span>
               <span class="skill-tile software">Git</span>
             </div>
+
           </div>
 
+
           <div class="skill-cluster-group">
+
             <h3>Cloud & Automation</h3>
+
             <div class="skill-tile-wrap">
               <span class="skill-tile cloud">Google Cloud</span>
               <span class="skill-tile cloud">Docker</span>
@@ -1349,10 +1497,14 @@
               <span class="skill-tile cloud">Activepieces</span>
               <span class="skill-tile cloud">SLURM / HPC</span>
             </div>
+
           </div>
 
+
           <div class="skill-cluster-group">
+
             <h3>Platforms & Systems</h3>
+
             <div class="skill-tile-wrap">
               <span class="skill-tile systems">Android</span>
               <span class="skill-tile systems">iOS</span>
@@ -1365,103 +1517,222 @@
               <span class="skill-tile systems">VR</span>
               <span class="skill-tile systems">Networking</span>
             </div>
+
           </div>
 
+
           <div class="skill-cluster-group">
+
             <h3>Languages</h3>
+
             <div class="skill-tile-wrap">
               <span class="skill-tile language">English · C1</span>
               <span class="skill-tile language">German · B1</span>
             </div>
+
           </div>
+
         </div>
       </div>
     </section>
 
+
+    <!-- EDUCATION -->
     <section id="education">
       <div class="wrap">
+
         <div class="section-head">
           <div class="section-no">05 / Education</div>
-          <h2 class="section-title">Academic <em>background.</em></h2>
         </div>
 
         <div class="edu-list">
+
           <article class="edu">
-            <div class="edu-date">Oct 2023 — Jun 2026</div>
+
+            <div class="edu-date">
+              Oct 2023 — Jun 2026
+            </div>
+
             <div>
               <h3>M.Sc. Computer Science for Digital Media</h3>
               <p>Bauhaus-Universität Weimar · Germany</p>
-              <!-- Course curriculum to be added after user provides course list. -->
             </div>
-            <div class="edu-grade">GPA 1.5</div>
+
+            <div class="edu-grade">
+              GPA 1.5
+            </div>
+
           </article>
 
+
           <article class="edu">
-            <div class="edu-date">Aug 2016 — Apr 2019</div>
+
+            <div class="edu-date">
+              Aug 2016 — Apr 2019
+            </div>
+
             <div>
               <h3>B.Tech. Information Technology</h3>
               <p>Anna University · India</p>
-              <!-- Course curriculum to be added after user provides course list. -->
             </div>
-            <div class="edu-grade">GPA 1.7</div>
+
+            <div class="edu-grade">
+              GPA 1.7
+            </div>
+
           </article>
+
         </div>
       </div>
     </section>
 
+
+    <!-- CERTIFICATIONS -->
     <section id="certifications">
       <div class="wrap">
+
         <div class="section-head">
           <div class="section-no">06 / Certifications</div>
-          <h2 class="section-title">Latest <em>certifications.</em></h2>
         </div>
 
         <div class="cert-list">
-          <a class="cert cert-link" href="https://www.linkedin.com/in/rachanavenati/details/certifications/" target="_blank" rel="noreferrer">
-            <div class="cert-date">Sep 2026</div>
-            <div><h3>Agentic AI</h3><p>DeepLearning.AI</p></div>
-            <div>View ↗</div>
+
+          <a
+            class="cert cert-link"
+            href="https://www.linkedin.com/in/rachanavenati/details/certifications/"
+            target="_blank"
+            rel="noreferrer"
+          >
+
+            <div class="cert-date">
+              Sep 2026
+            </div>
+
+            <div>
+              <h3>Agentic AI</h3>
+              <p>DeepLearning.AI</p>
+            </div>
+
+            <div>
+              View ↗
+            </div>
+
           </a>
-          <a class="cert cert-link" href="https://www.linkedin.com/in/rachanavenati/details/certifications/" target="_blank" rel="noreferrer">
-            <div class="cert-date">Aug 2026</div>
-            <div><h3>Transformers in Practice</h3><p>DeepLearning.AI</p></div>
-            <div>View ↗</div>
+
+
+          <a
+            class="cert cert-link"
+            href="https://www.linkedin.com/in/rachanavenati/details/certifications/"
+            target="_blank"
+            rel="noreferrer"
+          >
+
+            <div class="cert-date">
+              Aug 2026
+            </div>
+
+            <div>
+              <h3>Transformers in Practice</h3>
+              <p>DeepLearning.AI</p>
+            </div>
+
+            <div>
+              View ↗
+            </div>
+
           </a>
-          <a class="cert cert-link" href="https://www.linkedin.com/in/rachanavenati/details/certifications/" target="_blank" rel="noreferrer">
-            <div class="cert-date">Jun 2025</div>
-            <div><h3>Code in Place</h3><p>Stanford University</p></div>
-            <div>View ↗</div>
+
+
+          <a
+            class="cert cert-link"
+            href="https://www.linkedin.com/in/rachanavenati/details/certifications/"
+            target="_blank"
+            rel="noreferrer"
+          >
+
+            <div class="cert-date">
+              Jun 2025
+            </div>
+
+            <div>
+              <h3>Code in Place</h3>
+              <p>Stanford University</p>
+            </div>
+
+            <div>
+              View ↗
+            </div>
+
           </a>
+
         </div>
       </div>
     </section>
 
-    
+
+    <!-- CONTACT -->
     <section class="contact compact-contact" id="contact">
       <div class="wrap">
+
         <div class="section-head">
           <div class="section-no">07 / Contact</div>
-          <h2 class="section-title">Contact.</h2>
         </div>
 
         <div class="compact-contact-row">
-          <a href="mailto:rachanavenati@gmail.com">Email ↗</a>
-          <a href="https://www.linkedin.com/in/rachanavenati" target="_blank">LinkedIn ↗</a>
-          <a href="https://github.com/RachanaVenati" target="_blank">GitHub ↗</a>
-          <a href="https://huggingface.co/RachanaV" target="_blank">Hugging Face ↗</a>
-          <a href="https://www.kaggle.com/rachanavenati" target="_blank">Kaggle ↗</a>
+
+          <a href="mailto:rachanavenati@gmail.com">
+            Email ↗
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/rachanavenati"
+            target="_blank"
+            rel="noreferrer"
+          >
+            LinkedIn ↗
+          </a>
+
+          <a
+            href="https://github.com/RachanaVenati"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub ↗
+          </a>
+
+          <a
+            href="https://huggingface.co/RachanaV"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Hugging Face ↗
+          </a>
+
+          <a
+            href="https://www.kaggle.com/rachanavenati"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Kaggle ↗
+          </a>
+
         </div>
       </div>
     </section>
 
   </main>
 
+
   <footer>
-    <div class="wrap">© <span id="year"></span> Rachana Venati · Germany</div>
+    <div class="wrap">
+      © <span id="year"></span> Rachana Venati · Germany
+    </div>
   </footer>
 
+
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
   </script>
 
 </body>
